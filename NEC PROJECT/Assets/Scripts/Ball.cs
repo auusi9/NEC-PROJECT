@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
 
@@ -58,6 +59,8 @@ public class Ball : MonoBehaviour {
         if (col.gameObject.name == "Portal")
         {
             ball.velocity = Vector3.zero;
+            SceneManager.LoadScene("Menu");
+
         }
 
         else if (col.gameObject.name == "Power-up01")
