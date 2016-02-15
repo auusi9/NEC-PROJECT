@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
 
+    public GameObject ball_clone;
     public string LevelName;
     public Rigidbody2D ball;
     public Vector3 ball_position;
@@ -17,13 +18,18 @@ public class Ball : MonoBehaviour {
     bool bigBall;
     bool smallBall;
     Animator anim;
+
+
     // Use this for initialization
     void Start () 
     {
+
+        
         ball.AddForce(new Vector3(80.0f, 0.0f, 0.0f));
         speed = 5.0f;
 
         anim = GetComponent<Animator>();
+
 	}
 	
     public void ResetActualScene()
@@ -80,7 +86,8 @@ public class Ball : MonoBehaviour {
 
         else if(col.gameObject.name == "DoubleBall")
         {
-            Instantiate(this, ball.position, ball.transform.rotation);
+            
+            Instantiate(ball_clone, ball.position, ball.transform.rotation);
             Destroy(col.gameObject);
 
         }
@@ -116,7 +123,7 @@ public class Ball : MonoBehaviour {
 
         if(shield == true)
         {
-            //animation
+            
         }
 
         //Velocity PowerUp
