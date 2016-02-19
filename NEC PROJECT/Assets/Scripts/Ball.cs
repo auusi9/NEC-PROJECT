@@ -17,6 +17,7 @@ public class Ball : MonoBehaviour {
     bool velocityDown;
     bool bigBall;
     bool smallBall;
+    public float time;
     
     Animator anim;
     
@@ -152,7 +153,7 @@ public class Ball : MonoBehaviour {
             speed = 10.0f;
             ball.AddForce(ball.velocity.normalized * speed);
 
-            if((Time.time - actual_time) > 2.0f)
+            if((Time.time - actual_time) > time)
             {
                 velocity = false;
                 speed = 5.0f;
@@ -165,7 +166,7 @@ public class Ball : MonoBehaviour {
             speed = 2.0f;
             ball.AddForce(ball.velocity.normalized * speed);
 
-            if ((Time.time - actual_time) > 2.0f)
+            if ((Time.time - actual_time) > time)
             {
                 velocityDown = false;
                 speed = 5.0f;
@@ -176,7 +177,7 @@ public class Ball : MonoBehaviour {
         if(bigBall == true)
         {
             gameObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.0f);
-            if ((Time.time - actual_time) > 3.0f)
+            if ((Time.time - actual_time) > (time +2))
             {
                 bigBall = false;
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
@@ -187,7 +188,7 @@ public class Ball : MonoBehaviour {
         if (smallBall == true)
         {
             gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 1.0f);
-            if ((Time.time - actual_time) > 3.0f)
+            if ((Time.time - actual_time) > (time + 2))
             {
                 smallBall = false;
                 gameObject.transform.localScale = new Vector3(1, 1, 1);
