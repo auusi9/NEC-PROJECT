@@ -21,4 +21,17 @@ public class SpinScript : MonoBehaviour
         float ang = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg - baseAngle;
         transform.rotation = Quaternion.AngleAxis(ang, Vector3.forward);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -58,17 +58,8 @@ public class Ball : MonoBehaviour {
             else { shield = false; anim.SetBool("Shield", false); }
 
         }
-        else if (col.gameObject.tag == "Marks")
-        {
-
-          
-
-        }
-        
-
-
     }
-    
+  
     void OnTriggerEnter2D(Collider2D col)
     {
       
@@ -89,8 +80,8 @@ public class Ball : MonoBehaviour {
         else if(col.gameObject.name == "Shield")
         {
             shield = true;
-            anim.SetBool("Shield", true);
 
+            
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
 
@@ -100,9 +91,9 @@ public class Ball : MonoBehaviour {
 
         else if(col.gameObject.name == "DoubleBall")
         {
-            
-            
-            Instantiate(ball_clone, ball.position, ball.transform.rotation);
+
+
+            doubleBall = true;
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
@@ -134,8 +125,8 @@ public class Ball : MonoBehaviour {
             actual_time = Time.time;
             smallBall = true;
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
-
             parent.SetBool("Die", true);
+
             Destroy(col.gameObject);            
         }
 
@@ -146,6 +137,27 @@ public class Ball : MonoBehaviour {
     {
         ball.velocity = ball.velocity.normalized * speed;
         
+        if(doubleBall == true)
+        {
+            
+            Ball clone = new Ball();
+ 
+            clone = Instantiate(this);
+            clone.GetComponentsfrom(this);
+
+            doubleBall = false;
+
+        }
+
+        if (shield == true)
+        {
+
+            anim.SetBool("Shield", true);
+
+        }
+     
+       
+
 
         //Velocity PowerUp
         if (velocity == true)
@@ -195,4 +207,36 @@ public class Ball : MonoBehaviour {
             }
         }
     }
+
+
+    void GetComponentsfrom(Ball clone)
+    {
+        time = clone.time;
+        actual_time = clone.actual_time;
+        speed = clone.speed;
+        velocity = clone.velocity;
+        shield = clone.shield;
+        //doubleBall = clone.doubleBall;
+        velocityDown = clone.velocityDown;
+        bigBall = clone.bigBall;
+        smallBall = clone.smallBall;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
