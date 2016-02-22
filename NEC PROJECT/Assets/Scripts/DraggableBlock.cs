@@ -7,6 +7,8 @@ public class DraggableBlock : MonoBehaviour {
     private Vector3 offset;
     public GameObject slider;
     float mousex;
+    public float width2;
+    public float width2block;
 
     void OnMouseDown()
     {
@@ -16,15 +18,17 @@ public class DraggableBlock : MonoBehaviour {
 
     void OnMouseDrag()
     {
-        float width2 = slider.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        float width2block = gameObject.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-        if(width2block > width2 + slider.transform.position.x)
+       width2 = slider.GetComponent<Collider2D>().offset.x ;
+
+        width2block = GetComponent<Collider2D>().offset.x;
+
+        if((width2block * 2) + transform.position.x < width2 + slider.transform.position.x)
         {
-            mousex = width2 + slider.transform.position.x;
+            transform.position.Set(slider.transform.position.x, transform.position.y, transform.position.z);
         }
-        else if (width2block < slider.transform.position.x - width2)
+        else if ((width2block*2) - transform.position.x < slider.transform.position.x - width2)
         {
-            mousex = slider.transform.position.x - width2;
+            transform.position.Set(slider.transform.position.x - (width2*2), transform.position.y, transform.position.z);
         }
         else
         {
@@ -35,4 +39,6 @@ public class DraggableBlock : MonoBehaviour {
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
         transform.position = curPosition; 
     }
+
+ 
 }
