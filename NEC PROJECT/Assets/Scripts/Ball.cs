@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour {
     public Rigidbody2D ball;
     public Vector3 ball_position;
     float actual_time;
+    float invencibility = 0.0f;
     float speed;
     bool velocity;
     bool shield;
@@ -44,19 +45,32 @@ public class Ball : MonoBehaviour {
     {
         if (col.gameObject.tag == "Spikes")
         {
+            
             if (shield == false)
             {
+                if ((Time.time - invencibility) > 0.25f)
+                {
 
+                
                 if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
                 {
 
                     ResetActualScene();
                 }
                 Destroy(this.gameObject);
+                }
+                
+
+               
 
             }
-            else { shield = false; anim.SetBool("Shield", false); }
-
+            else
+            { 
+                shield = false; anim.SetBool("Shield", false);
+                invencibility = Time.time;
+            }
+            
+            
         }
     }
   
@@ -73,6 +87,8 @@ public class Ball : MonoBehaviour {
         else if (col.gameObject.name == "Power-up01")
         {
             actual_time = Time.time;
+            Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
+            parent.SetBool("Die", true);
             velocity = true;
             Destroy(col.gameObject);
         }
@@ -117,6 +133,8 @@ public class Ball : MonoBehaviour {
         {
             actual_time = Time.time;
             bigBall = true;
+            Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
+            parent.SetBool("Die", true);
             Destroy(col.gameObject);
         }
 

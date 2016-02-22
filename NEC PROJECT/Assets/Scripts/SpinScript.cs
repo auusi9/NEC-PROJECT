@@ -22,7 +22,7 @@ public class SpinScript : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(ang, Vector3.forward);
     }
 
-
+  
 
 
 
