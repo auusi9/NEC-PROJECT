@@ -20,8 +20,8 @@ public class Ball : MonoBehaviour {
     bool smallBall;
     bool Die;
     public float time;
-    Vector3 BallSize;
-    
+    public Vector3 initialSpeed;
+    Vector3 BallSize;    
     Animator anim;
     
 
@@ -30,7 +30,7 @@ public class Ball : MonoBehaviour {
     {
 
         BallSize = new Vector3(1.0f, 1.0f, 1.0f);
-        ball.AddForce(new Vector3(80.0f, 0.0f, 0.0f));
+        ball.AddForce(new Vector3(80.0f * initialSpeed.x, 80.0f * initialSpeed.y, 0.0f));
         speed = 5.0f;
         
         anim = GetComponent<Animator>();
@@ -148,7 +148,7 @@ public class Ball : MonoBehaviour {
     void Update ()
     {
         ball.velocity = ball.velocity.normalized * speed;
-        
+
         if(doubleBall == true)
         {
 

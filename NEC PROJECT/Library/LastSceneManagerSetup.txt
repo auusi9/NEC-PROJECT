@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/NECSCENE.unity
+- path: Assets/Scene/TestingScene.unity
   isLoaded: 1
   isActive: 1
