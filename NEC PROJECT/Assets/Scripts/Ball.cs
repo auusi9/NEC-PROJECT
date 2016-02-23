@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
 
-    public Object ball_clone;
+    public Object ChildSprite;
     public string LevelName;
     public Rigidbody2D ball;
     public Vector3 ball_position;
@@ -18,7 +18,9 @@ public class Ball : MonoBehaviour {
     bool velocityDown;
     bool bigBall;
     bool smallBall;
+    bool Die;
     public float time;
+    Vector3 BallSize;
     
     Animator anim;
     
@@ -27,7 +29,7 @@ public class Ball : MonoBehaviour {
     void Start () 
     {
 
-        
+        BallSize = new Vector3(1.0f, 1.0f, 1.0f);
         ball.AddForce(new Vector3(80.0f, 0.0f, 0.0f));
         speed = 5.0f;
         
@@ -35,10 +37,7 @@ public class Ball : MonoBehaviour {
         
 	}
 	
-    public void ResetActualScene()
-    {
-        SceneManager.LoadScene(LevelName);
-    }
+    
 
 
     void OnCollisionEnter2D(Collision2D col)
@@ -51,17 +50,8 @@ public class Ball : MonoBehaviour {
                 if ((Time.time - invencibility) > 0.25f)
                 {
 
-                
-                if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
-                {
-
-                    ResetActualScene();
+                    DieAnimation();
                 }
-                Destroy(this.gameObject);
-                }
-                
-
-               
 
             }
             else
@@ -84,16 +74,17 @@ public class Ball : MonoBehaviour {
             
         }
 
-        else if (col.gameObject.name == "Power-up01")
+        else if (col.gameObject.tag == "SpeedUpPowerUp")
         {
             actual_time = Time.time;
+            speed = 10.0f;
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
             velocity = true;
             Destroy(col.gameObject);
         }
 
-        else if(col.gameObject.name == "Shield")
+        else if (col.gameObject.tag == "ShieldPowerUp")
         {
             shield = true;
 
@@ -105,7 +96,7 @@ public class Ball : MonoBehaviour {
             
         }
 
-        else if(col.gameObject.name == "DoubleBall")
+        else if (col.gameObject.tag == "DoubleBallPowerUp")
         {
 
 
@@ -117,8 +108,9 @@ public class Ball : MonoBehaviour {
             Destroy(col.gameObject);
         }
 
-        else if(col.gameObject.name == "SpeedDown")
+        else if (col.gameObject.tag == "SpeedDownPowerUp")
         {
+            speed = 2.0f;
             actual_time = Time.time;
             velocityDown = true;
 
@@ -129,19 +121,21 @@ public class Ball : MonoBehaviour {
 
         }
 
-        else if(col.gameObject.name == "Power_up_bigger")
+        else if (col.gameObject.tag == "BiggerPowerUp")
         {
             actual_time = Time.time;
+            BallSize = new Vector3(1.3f, 1.3f, 1.0f);
             bigBall = true;
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
             Destroy(col.gameObject);
         }
 
-        else if(col.gameObject.name == "Power_up_smaller")
+        else if (col.gameObject.tag == "SmallerPowerUp")
         {
             actual_time = Time.time;
             smallBall = true;
+            BallSize = new Vector3(0.7f, 0.7f, 1.0f);
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
 
@@ -173,14 +167,14 @@ public class Ball : MonoBehaviour {
             anim.SetBool("Shield", true);
 
         }
-     
+       
        
 
 
         //Velocity PowerUp
         if (velocity == true)
         {
-            speed = 10.0f;
+            
             ball.AddForce(ball.velocity.normalized * speed);
 
             if((Time.time - actual_time) > time)
@@ -193,7 +187,7 @@ public class Ball : MonoBehaviour {
         //Speed Down PowerUp
         if (velocityDown == true)
         {
-            speed = 2.0f;
+            
             ball.AddForce(ball.velocity.normalized * speed);
 
             if ((Time.time - actual_time) > time)
@@ -206,23 +200,29 @@ public class Ball : MonoBehaviour {
         //Bigger Ball PowerUp
         if(bigBall == true)
         {
-            gameObject.transform.localScale = new Vector3(1.3f, 1.3f, 1.0f);
+
+            gameObject.transform.localScale = BallSize;
             if ((Time.time - actual_time) > (time +2))
             {
                 bigBall = false;
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
+                BallSize = Vector3.one;
+                gameObject.transform.localScale = BallSize;
             }
+            
         }
 
         //Smaller Ball PowerUp
         if (smallBall == true)
         {
-            gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 1.0f);
+            
+            gameObject.transform.localScale = BallSize;
             if ((Time.time - actual_time) > (time + 2))
             {
                 smallBall = false;
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
+                BallSize = Vector3.one;
+                gameObject.transform.localScale = BallSize;
             }
+            
         }
     }
 
@@ -243,7 +243,15 @@ public class Ball : MonoBehaviour {
     }
 
 
+    void DieAnimation()
+    {
+        
+            anim.SetBool("Die", true);
+            ball.velocity = Vector3.zero;
+            Destroy(ChildSprite);
+            Destroy(GetComponent<Sprite>());
 
+    }
 
 
 
