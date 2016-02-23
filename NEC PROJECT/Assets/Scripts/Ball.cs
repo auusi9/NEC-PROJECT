@@ -157,8 +157,8 @@ public class Ball : MonoBehaviour {
         
         if(doubleBall == true)
         {
-            
-            Ball clone = new Ball();
+
+            Ball clone; 
  
             clone = Instantiate(this);
             clone.GetComponentsfrom(this);

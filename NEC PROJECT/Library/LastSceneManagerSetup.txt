@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/UILevels.unity
+- path: Assets/Scene/NECSCENE.unity
   isLoaded: 1
   isActive: 1
