@@ -31,6 +31,26 @@ public class LevelsManager : MonoBehaviour {
         SceneManager.LoadScene("NECSCENE4");
     }
 
+    public void LoadScene5()
+    {
+        SceneManager.LoadScene("NECSCENE5");
+    }
+
+    public void LoadScene6()
+    {
+        SceneManager.LoadScene("NECSCENE6");
+    }
+
+    public void LoadScene7()
+    {
+        SceneManager.LoadScene("NECSCENE7");
+    }
+
+    public void LoadScene8()
+    {
+        SceneManager.LoadScene("NECSCENE8");
+    }
+
     // Update is called once per frame
     void Update()
     {
