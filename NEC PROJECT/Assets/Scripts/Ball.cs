@@ -70,7 +70,7 @@ public class Ball : MonoBehaviour {
         if (col.gameObject.name == "Portal")
         {
             ball.velocity = Vector3.zero;
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("UILevels");
             
         }
 

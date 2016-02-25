@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-      
+        mainMenu = "MainMenu";
     }
 
     // Update is called once per frame
