@@ -24,7 +24,7 @@ public class DraggableBlock : MonoBehaviour {
 
         curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
-        Draggableblock.velocity = curPosition * 5;
+        Draggableblock.velocity = curPosition * 3;
 
     }
 
