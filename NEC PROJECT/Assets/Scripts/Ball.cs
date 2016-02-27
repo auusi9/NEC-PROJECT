@@ -63,18 +63,25 @@ public class Ball : MonoBehaviour {
             
         }
     }
-  
-    void OnTriggerEnter2D(Collider2D col)
+
+  void OnTriggerStay2D(Collider2D col)
     {
-      
         if (col.gameObject.name == "Portal")
         {
             ball.velocity = Vector3.zero;
-            SceneManager.LoadScene("UILevels");
-            
+
+
         }
 
-        else if (col.gameObject.tag == "SpeedUpPowerUp")
+
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+
+       
+
+        if (col.gameObject.tag == "SpeedUpPowerUp")
         {
             actual_time = Time.time;
             speed = 10.0f;

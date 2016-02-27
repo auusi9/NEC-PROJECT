@@ -1,19 +1,54 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Portal : MonoBehaviour {
+    
 
-    public CircleCollider2D portal;
-    public CircleCollider2D ball;
+    public string NextScene;
+    public string CurrentScene;
+    
 	// Use this for initialization
 	void Start () 
     {
 	    
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+
+        if (col.gameObject.tag == "Player")
+        {
+            
+            Invoke("LoadNextLevel", 2);
+        }
+
+    }
+
+
+
+
+        // Update is called once per frame
+        void Update () 
     {
         
-	}
+    }
+
+    
+
+    void LateUpdate()
+    {
+
+        if (GameObject.FindGameObjectsWithTag("Player").Length == 0)
+        {
+
+            SceneManager.LoadScene(CurrentScene);
+        }
+
+    }
+
+    void LoadNextLevel()
+    {
+        SceneManager.LoadScene(NextScene);
+    }
 }
