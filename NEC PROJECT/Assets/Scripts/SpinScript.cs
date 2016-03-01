@@ -5,7 +5,7 @@ public class SpinScript : MonoBehaviour
 {
 
     private float baseAngle = 0.0f;
-
+    Quaternion iniRot;
     void OnMouseDown()
     {
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
@@ -22,7 +22,21 @@ public class SpinScript : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(ang, Vector3.forward);
     }
 
-  
+    void Start()
+    {
+        iniRot = transform.rotation;
+
+    }
+    void LateUpdate()
+    {
+        if(Time.timeScale == 0 )
+        {
+            transform.rotation = iniRot;
+            
+        }
+        
+
+    }
 
 
 
