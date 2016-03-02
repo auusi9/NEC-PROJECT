@@ -73,8 +73,8 @@ public class SpinScript : MonoBehaviour
             transform.rotation = iniRot;
             
         }
-        
 
+        iniRot = transform.rotation;
     }
 
 
