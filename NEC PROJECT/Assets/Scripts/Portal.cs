@@ -45,8 +45,9 @@ public class Portal : MonoBehaviour {
 
         if (GameObject.FindGameObjectsWithTag("Player").Length == 0)
         {
-
+            TouchesScript.touches = 0;
             SceneManager.LoadScene(CurrentScene);
+            
         }
 
     }
