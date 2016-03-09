@@ -20,15 +20,16 @@ public class Ball : MonoBehaviour {
     bool Die;
     public float time;
     public Vector3 initialSpeed;
-    Vector3 BallSize;    
+    Vector3 BallSize = new Vector3(1.0f, 1.0f, 1.0f);
     Animator anim;
+ 
     
 
     // Use this for initialization
     void Start () 
     {
 
-        BallSize = new Vector3(1.0f, 1.0f, 1.0f);
+        
         ball.AddForce(new Vector3(80.0f * initialSpeed.x, 80.0f * initialSpeed.y, 0.0f));
         speed = 5.0f;
         
@@ -57,10 +58,12 @@ public class Ball : MonoBehaviour {
             { 
                 shield = false; anim.SetBool("Shield", false);
                 invencibility = Time.time;
+                
             }
-            
-            
         }
+        if (col.gameObject.tag == "Player") return;
+        else TouchesScript.touches++;
+        
     }
 
   void OnTriggerStay2D(Collider2D col)
@@ -244,6 +247,7 @@ public class Ball : MonoBehaviour {
         velocityDown = clone.velocityDown;
         bigBall = clone.bigBall;
         smallBall = clone.smallBall;
+        BallSize = clone.BallSize;
 
 
     }
