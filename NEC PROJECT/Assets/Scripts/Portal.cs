@@ -8,7 +8,7 @@ public class Portal : MonoBehaviour {
     public string NextScene;
     public string CurrentScene;
     public GameObject rect;
- 
+    
     
 	// Use this for initialization
 	void Start () 
