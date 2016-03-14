@@ -13,7 +13,7 @@ public class LevelsManager : MonoBehaviour {
 
     public void LoadScene1()
     {
-        SceneManager.LoadScene("NECSCENE");
+        SceneManager.LoadScene("NECSCENE13");
     }
 
     public void LoadScene2()

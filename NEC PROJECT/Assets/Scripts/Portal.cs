@@ -24,6 +24,8 @@ public class Portal : MonoBehaviour {
            
             Invoke("LoadNextLevel", 2);
             rect.GetComponent<FreezeRotation>().enabled = true;
+            
+
           
         }
 
@@ -36,6 +38,8 @@ public class Portal : MonoBehaviour {
         void Update () 
     {
         
+        
+
     }
 
     
@@ -54,6 +58,7 @@ public class Portal : MonoBehaviour {
 
     void LoadNextLevel()
     {
+        TouchesScript.touches = 0;
         SceneManager.LoadScene(NextScene);
     }
 }

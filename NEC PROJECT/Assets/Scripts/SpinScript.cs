@@ -3,11 +3,12 @@ using System.Collections;
 
 public class SpinScript : MonoBehaviour
 {
-
+    float baseAngle2;
+    /*
     private float[] baseAngle = new float[5];
     Vector2[] posBegan = new Vector2[5];
     Vector2[] posMoved = new Vector2[5];
-    int[] touched = new int[5];
+    int[] touched = new int[5];*/
     Quaternion iniRot;
 
     /*void OnMouseDown()
@@ -30,12 +31,10 @@ public class SpinScript : MonoBehaviour
     {
         iniRot = transform.rotation;
 
-        
-
     }
 
 
-    void Update()
+   /* void Update()
     {
         for (int i = 0; i < Input.touchCount; ++i)
         {
@@ -65,7 +64,7 @@ public class SpinScript : MonoBehaviour
 
             }
         }
-    }
+    }*/
 
     void LateUpdate()
     {
@@ -79,13 +78,36 @@ public class SpinScript : MonoBehaviour
     }
 
 
+    void onTouchDown(Vector3 position)
+    {
+        
+        Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+        pos = position - pos;
+        baseAngle2 = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg;
+        baseAngle2 -= Mathf.Atan2(transform.right.y, transform.right.x) * Mathf.Rad2Deg;
+
+    }
+
+    
 
 
+    void onTouchStay(Vector3 position)
+    {
+        Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
+        pos = position - pos;
+        float ang = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg - baseAngle2;
+        transform.rotation = Quaternion.AngleAxis(ang, Vector3.forward);
 
+    }
 
+    void onTouchUp()
+    {
 
+    }
+    void onTouchExit()
+    {
 
-
-
+    }
+    
 
 }
