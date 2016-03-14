@@ -25,13 +25,13 @@ public class TouchInputHandler : MonoBehaviour
     {
 
 #if UNITY_EDITOR_WIN
-        // if unity editor
+        // if unity editor // Mouse Input
+
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
         {
             touchesOld = new GameObject[touchList.Count];
             touchList.CopyTo(touchesOld);
             touchList.Clear();
-
 
             hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), -Vector2.up, 0, touchInputMask);
             GameObject recipient;
@@ -82,26 +82,25 @@ public class TouchInputHandler : MonoBehaviour
                 if (hit.collider != null)
                 {
                     GameObject recipient = hit.transform.gameObject;
-
                     touchList.Add(recipient);
                     
-
                     if (touch.phase == TouchPhase.Began)
                     {
                         touchArray[i] = recipient;
                         touchArray[i].SendMessage("onTouchDown", new Vector3(touch.position.x, touch.position.y));
-                        
                     }
                 }
-                if(touchArray[i] != null) { 
-                if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
-                {
-                    touchArray[i].SendMessage("onTouchStay", new Vector3(touch.position.x, touch.position.y), SendMessageOptions.DontRequireReceiver);
-                }
-                if(touch.phase == TouchPhase.Ended)
-                {
-                        touchArray[i] = null;
-                }
+
+                if(touchArray[i] != null)
+                { 
+                    if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
+                    {
+                        touchArray[i].SendMessage("onTouchStay", new Vector3(touch.position.x, touch.position.y), SendMessageOptions.DontRequireReceiver);
+                    }
+                    if(touch.phase == TouchPhase.Ended)
+                    {
+                            touchArray[i] = null;
+                    }
                 }
             }
 

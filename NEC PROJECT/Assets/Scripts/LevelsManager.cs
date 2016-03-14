@@ -5,12 +5,6 @@ using System.Collections;
 
 public class LevelsManager : MonoBehaviour {
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     public void LoadScene1()
     {
         SceneManager.LoadScene("NECSCENE13");
@@ -49,11 +43,5 @@ public class LevelsManager : MonoBehaviour {
     public void LoadScene8()
     {
         SceneManager.LoadScene("NECSCENE8");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
     }
 }

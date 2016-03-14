@@ -28,17 +28,11 @@ public class Ball : MonoBehaviour {
     // Use this for initialization
     void Start () 
     {
-
-        
         ball.AddForce(new Vector3(80.0f * initialSpeed.x, 80.0f * initialSpeed.y, 0.0f));
         speed = 5.0f;
         
-        anim = GetComponent<Animator>();
-        
+        anim = GetComponent<Animator>(); 
 	}
-	
-    
-
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -52,7 +46,6 @@ public class Ball : MonoBehaviour {
 
                     DieAnimation();
                 }
-
             }
             else
             { 
@@ -63,7 +56,6 @@ public class Ball : MonoBehaviour {
         }
         else if (col.gameObject.tag == "Player") return;
         else TouchesScript.touches++;
-        
     }
 
   void OnTriggerStay2D(Collider2D col)
@@ -71,17 +63,11 @@ public class Ball : MonoBehaviour {
         if (col.gameObject.name == "Portal")
         {
             ball.velocity = Vector3.zero;
-
-
         }
-
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-
-       
 
         if (col.gameObject.tag == "SpeedUpPowerUp")
         {
@@ -97,18 +83,14 @@ public class Ball : MonoBehaviour {
         {
             shield = true;
 
-            
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
 
             Destroy(col.gameObject);
-            
         }
 
         else if (col.gameObject.tag == "DoubleBallPowerUp")
         {
-
-
             doubleBall = true;
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
@@ -127,7 +109,6 @@ public class Ball : MonoBehaviour {
             parent.SetBool("Die", true);
 
             Destroy(col.gameObject);
-
         }
 
         else if (col.gameObject.tag == "BiggerPowerUp")
@@ -150,7 +131,6 @@ public class Ball : MonoBehaviour {
 
             Destroy(col.gameObject);            
         }
-
     }
 
     // Update is called once per frame
@@ -160,30 +140,20 @@ public class Ball : MonoBehaviour {
 
         if(doubleBall == true)
         {
-
             Ball clone; 
- 
             clone = Instantiate(this);
             clone.GetComponentsfrom(this);
-
             doubleBall = false;
-
         }
 
         if (shield == true)
         {
-
             anim.SetBool("Shield", true);
-
         }
-       
-       
-
 
         //Velocity PowerUp
         if (velocity == true)
         {
-            
             ball.AddForce(ball.velocity.normalized * speed);
 
             if((Time.time - actual_time) > time)
@@ -196,7 +166,6 @@ public class Ball : MonoBehaviour {
         //Speed Down PowerUp
         if (velocityDown == true)
         {
-            
             ball.AddForce(ball.velocity.normalized * speed);
 
             if ((Time.time - actual_time) > time)
@@ -209,21 +178,18 @@ public class Ball : MonoBehaviour {
         //Bigger Ball PowerUp
         if(bigBall == true)
         {
-
             gameObject.transform.localScale = BallSize;
             if ((Time.time - actual_time) > (time +2))
             {
                 bigBall = false;
                 BallSize = Vector3.one;
                 gameObject.transform.localScale = BallSize;
-            }
-            
+            } 
         }
 
         //Smaller Ball PowerUp
         if (smallBall == true)
-        {
-            
+        {   
             gameObject.transform.localScale = BallSize;
             if ((Time.time - actual_time) > (time + 2))
             {
@@ -231,7 +197,6 @@ public class Ball : MonoBehaviour {
                 BallSize = Vector3.one;
                 gameObject.transform.localScale = BallSize;
             }
-            
         }
     }
 
@@ -248,19 +213,15 @@ public class Ball : MonoBehaviour {
         bigBall = clone.bigBall;
         smallBall = clone.smallBall;
         BallSize = clone.BallSize;
-
-
     }
 
 
     void DieAnimation()
     {
-        
             anim.SetBool("Die", true);
             ball.velocity = Vector3.zero;
             Destroy(ChildSprite);
             Destroy(GetComponent<Sprite>());
-
     }
 
 
