@@ -8,6 +8,7 @@ public class StartMenu : MonoBehaviour {
     public string levelSelect;
 
     public GameObject PauseSystem;
+    public GameObject TryAgain;
 
     string mainMenu = "Menu";
 
@@ -22,6 +23,7 @@ public class StartMenu : MonoBehaviour {
         Time.timeScale = 1f;
         this.gameObject.SetActive(false);
         PauseSystem.SetActive(true);
+        TryAgain.SetActive(true);
     }
 
     public void LevelSelect()

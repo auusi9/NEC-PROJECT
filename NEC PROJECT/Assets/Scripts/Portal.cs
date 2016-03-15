@@ -7,12 +7,14 @@ public class Portal : MonoBehaviour {
     public string NextScene;
     public string CurrentScene;
     public GameObject rect;
+    public GameObject Complete;
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            Invoke("LoadNextLevel", 2);
+            Complete.SetActive(true);
+            Invoke("LoadNextLevel", 1.5f);
             rect.GetComponent<FreezeRotation>().enabled = true; 
         }
     }
