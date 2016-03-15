@@ -10,6 +10,6 @@ public class TouchesScript : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        touchText.text = "Touches : " + touches;
+        touchText.text = ""+touches;
     }
 }
