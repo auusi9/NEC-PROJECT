@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour {
     public Rigidbody2D ball;
     public Vector3 ball_position;
     public Object TouchAnim;
+    public Animator TouchUiAnimator;
     float actual_time;
     float invencibility = 0.0f;
     float speed;
@@ -58,6 +59,7 @@ public class Ball : MonoBehaviour {
         else if (col.gameObject.tag == "Player") return;
         else
         {
+            TouchUiAnimator.SetBool("Touched",true);
             ContactPoint2D contact = col.contacts[0];
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
             Vector3 pos = contact.point;
@@ -66,18 +68,14 @@ public class Ball : MonoBehaviour {
         }
     }
 
-  void OnTriggerStay2D(Collider2D col)
+ 
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Portal")
         {
             ball.velocity = Vector3.zero;
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-
-        if (col.gameObject.tag == "SpeedUpPowerUp")
+        else if (col.gameObject.tag == "SpeedUpPowerUp")
         {
             actual_time = Time.time;
             speed = 10.0f;
