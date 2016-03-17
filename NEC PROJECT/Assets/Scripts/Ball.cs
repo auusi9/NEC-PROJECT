@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour {
     public string LevelName;
     public Rigidbody2D ball;
     public Vector3 ball_position;
+    public Object TouchAnim;
     float actual_time;
     float invencibility = 0.0f;
     float speed;
@@ -55,7 +56,14 @@ public class Ball : MonoBehaviour {
             }
         }
         else if (col.gameObject.tag == "Player") return;
-        else TouchesScript.touches++;
+        else
+        {
+            ContactPoint2D contact = col.contacts[0];
+            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Vector3 pos = contact.point;
+            Instantiate(TouchAnim, pos, rot);
+            TouchesScript.touches++;
+        }
     }
 
   void OnTriggerStay2D(Collider2D col)
