@@ -26,6 +26,7 @@ public class Portal : MonoBehaviour {
             TouchesScript.touches = 0;
             SceneManager.LoadScene(CurrentScene);
         }
+       
     }
 
     void LoadNextLevel()

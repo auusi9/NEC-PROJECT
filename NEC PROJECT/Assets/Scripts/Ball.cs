@@ -59,6 +59,13 @@ public class Ball : MonoBehaviour {
         else if (col.gameObject.tag == "Player") return;
         else
         {
+            
+            if(TouchUiAnimator.GetBool("Touched") == true)
+            {
+
+                TouchUiAnimator.Rebind();
+
+            }
             TouchUiAnimator.SetBool("Touched",true);
             ContactPoint2D contact = col.contacts[0];
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);

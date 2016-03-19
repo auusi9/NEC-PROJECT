@@ -19,7 +19,7 @@ public class MenuBall : MonoBehaviour {
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
             Vector3 pos = contact.point;
             Instantiate(TouchAnim, pos, rot);
-            TouchesScript.touches++;
+            
         
     }
     // Update is called once per frame
