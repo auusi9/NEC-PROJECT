@@ -20,11 +20,14 @@ public class Ball : MonoBehaviour {
     bool bigBall;
     bool smallBall;
     bool Die;
+    bool endrotation;
+    bool invulnerable;
     public float time;
     public Vector3 initialSpeed;
     Vector3 BallSize = new Vector3(1.0f, 1.0f, 1.0f);
     Animator anim;
- 
+    public GameObject trail;
+    GameObject portal;
     
 
     // Use this for initialization
@@ -43,7 +46,7 @@ public class Ball : MonoBehaviour {
             
             if (shield == false)
             {
-                if ((Time.time - invencibility) > 0.25f)
+                if ((Time.time - invencibility) > 0.25f && invulnerable == false)
                 {
 
                     DieAnimation();
@@ -53,18 +56,14 @@ public class Ball : MonoBehaviour {
             { 
                 shield = false; anim.SetBool("Shield", false);
                 invencibility = Time.time;
-                
             }
         }
         else if (col.gameObject.tag == "Player") return;
         else
         {
-            
-            if(TouchUiAnimator.GetBool("Touched") == true)
+            if (TouchUiAnimator.GetBool("Touched") == true)
             {
-
                 TouchUiAnimator.Rebind();
-
             }
             TouchUiAnimator.SetBool("Touched",true);
             ContactPoint2D contact = col.contacts[0];
@@ -80,7 +79,13 @@ public class Ball : MonoBehaviour {
     {
         if (col.gameObject.name == "Portal")
         {
+            GetComponent<Collider2D>().enabled = false;
+            invulnerable = true;
             ball.velocity = Vector3.zero;
+            ball.transform.SetParent(col.gameObject.transform);
+            trail.SetActive(false);
+            endrotation = true;
+            portal = col.gameObject;
         }
         else if (col.gameObject.tag == "SpeedUpPowerUp")
         {
@@ -150,7 +155,7 @@ public class Ball : MonoBehaviour {
     void Update ()
     {
         ball.velocity = ball.velocity.normalized * speed;
-
+        
         if(doubleBall == true)
         {
             Ball clone; 
@@ -209,6 +214,22 @@ public class Ball : MonoBehaviour {
                 smallBall = false;
                 BallSize = Vector3.one;
                 gameObject.transform.localScale = BallSize;
+            }
+        }
+
+        if (endrotation == true)
+        {
+            transform.RotateAround(portal.transform.position, Vector3.forward, 8.0f);
+            ball.velocity = portal.transform.position - ball.transform.position;
+            ball.velocity = ball.velocity * 2.0f;
+            if (BallSize.x < 0)
+            {
+                ball.transform.localScale = Vector3.zero;
+            }
+            else
+            {
+                BallSize = BallSize - new Vector3(0.01f, 0.01f, 0.01f);
+                ball.transform.localScale = BallSize;
             }
         }
     }
