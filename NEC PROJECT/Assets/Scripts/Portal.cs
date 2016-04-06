@@ -17,6 +17,7 @@ public class Portal : MonoBehaviour {
             Invoke("LoadComplete", 1.7f);
             Invoke("LoadNextLevel", 3.0f);
             rect.GetComponent<FreezeRotation>().enabled = true;
+            PlayerPrefs.SetInt(NextScene, 1);
         }
     }
    

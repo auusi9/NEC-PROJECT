@@ -5,9 +5,9 @@ using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
 
-    public string levelSelect;
+    string levelSelect;
 
-    public string mainMenu;
+    string mainMenu;
 
     public GameObject Pause_Menu;
 
@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour {
     void Start()
     {
         mainMenu = "MainMenu";
+        levelSelect = "LevelMenu";
     }
 
     // Update is called once per frame

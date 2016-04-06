@@ -25,7 +25,7 @@ public class MenuRotation : MonoBehaviour
     }
     public void LoadPlayScene()
     {
-        SceneManager.LoadScene("UILevels");
+        SceneManager.LoadScene("LevelMenu");
     }
 
     public void OnStartGame()
@@ -55,6 +55,10 @@ public class MenuRotation : MonoBehaviour
         //Add load for new scene here.
         
 
+    }
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     void OnTriggerEnter2D(Collider2D col)
