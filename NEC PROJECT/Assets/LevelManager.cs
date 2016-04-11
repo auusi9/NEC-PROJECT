@@ -85,6 +85,10 @@ public class LevelManager : MonoBehaviour {
         world--;
         if (world == 0) world = 5;
     }
+    void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     void LoadLevel1()
     {
         switch (world)
