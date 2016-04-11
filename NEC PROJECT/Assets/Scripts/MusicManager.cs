@@ -39,7 +39,7 @@ public class MusicManager : MonoBehaviour {
     {
         if(SceneManager.GetActiveScene().buildIndex != currentscene)
         {
-            if (SceneManager.GetActiveScene().buildIndex < 2 && currentscene > 2)
+            if (SceneManager.GetActiveScene().buildIndex < 2 && currentscene >= 2)
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = MenuMusic;
