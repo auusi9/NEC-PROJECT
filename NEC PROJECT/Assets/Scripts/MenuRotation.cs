@@ -35,6 +35,11 @@ public class MenuRotation : MonoBehaviour
     {
         SceneManager.LoadScene("LevelMenu");
     }
+
+    public void LoadAboutUsScene()
+    {
+        SceneManager.LoadScene("AboutUs");
+    }
   
    
     public void OnStartGame()
@@ -61,9 +66,8 @@ public class MenuRotation : MonoBehaviour
     }
     public void OnAboutGame()
     {
-        Debug.Log("You pressed About us button!");
         MenuAudio.PlayOneShot(OnClick, 1);
-        //Add load for new scene here.
+        LoadAboutUsScene();
     }
 
     void Update()
