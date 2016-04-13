@@ -7,41 +7,62 @@ using UnityEngine.UI;
 public class MenuRotation : MonoBehaviour
 {
     float ang;
+    static bool firstTimeLoad = true;
     bool GoTo = false;
     float angleToGo = 325;
     float currentAngle = 135;
     float baseAngle2;
+    bool Sound;
+    public AudioClip OnClick;
+    private AudioSource MenuAudio;
+
     void Start()
     {
-        Time.timeScale = 1.0f;
+        MenuAudio = GetComponent<AudioSource>();
 
-       transform.rotation = Quaternion.AngleAxis(135, Vector3.forward);
-        GoTo = true;
+        Time.timeScale = 1.0f;
+        if (firstTimeLoad)
+        {
+            angleToGo = 325;
+            currentAngle = 135;
+            transform.rotation = Quaternion.AngleAxis(135, Vector3.forward);
+            GoTo = true;
+            firstTimeLoad = false;
+        }
     }
 
     public void LoadPlayScene()
     {
         SceneManager.LoadScene("LevelMenu");
     }
+  
+   
     public void OnStartGame()
     {
         //Debug.Log("You pressed play button!");
         //Add load for new scene here.
+
+        
+        MenuAudio.PlayOneShot(OnClick,1);
         LoadPlayScene();
+
     }
     public void OnSettingsGame()
     {
         Debug.Log("You pressed settings button!");
         //Add load for new scene here.
+        MenuAudio.PlayOneShot(OnClick, 1);
     }
     public void OnStatsGame()
     {
         Debug.Log("You pressed Stats button!");
-        //Add load for new scene here.
+        SceneManager.LoadScene("StatsScene");
+        MenuAudio.PlayOneShot(OnClick, 1);
     }
     public void OnAboutGame()
     {
         Debug.Log("You pressed About us button!");
+        MenuAudio.PlayOneShot(OnClick, 1);
         //Add load for new scene here.
     }
 
@@ -84,26 +105,25 @@ public class MenuRotation : MonoBehaviour
         {
             GoTo = true;
             angleToGo = 90;
-            //transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+            
         }
         else if (angle >= 135f  && angle < 225f)
         {
             GoTo = true;
             angleToGo = 180;
-            //transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+            
         }
         else if (angle >= 225f  && angle < 315f)
         {
             GoTo = true;
             angleToGo = 270;
             
-            //transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+           
         }
         else if (angle > 315f || angle < 45f)
         {
             GoTo = true;
             angleToGo = 0;
-            //transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
         }
         currentAngle = angle;
         if (currentAngle == 45 || currentAngle == 225 || currentAngle == 315 || currentAngle == 135) currentAngle++;
@@ -115,20 +135,19 @@ public class MenuRotation : MonoBehaviour
 
     void GoToAngle()
     {
+        
         currentAngle = Mathf.Round(currentAngle);
         if(currentAngle == angleToGo)
         {
             currentAngle = angleToGo;
             GoTo = false;
         }
-         if (currentAngle > angleToGo && currentAngle < 315)
+         if (currentAngle > angleToGo && currentAngle <= 315)
             currentAngle--;
         else if (currentAngle < angleToGo || currentAngle > 315)
             currentAngle++;
         if (currentAngle == 360) currentAngle = 0;
 
-      
-        
         transform.rotation = Quaternion.AngleAxis(currentAngle, Vector3.forward);
 
     }

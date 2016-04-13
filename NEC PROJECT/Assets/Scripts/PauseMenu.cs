@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour {
     public void Resume()
     {
         Time.timeScale = 1f;
+        PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
         Pause_Menu.SetActive(false);
     }
 
@@ -41,14 +42,21 @@ public class PauseMenu : MonoBehaviour {
     {
         Time.timeScale = 1f;
         Destroy(StartMenu.menu.gameObject);
-        SceneManager.LoadScene(levelSelect);
-       
+        TouchesScript.touches = 0;
+        StatsManager.TotalTime += Time.timeSinceLevelLoad;
+        PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
+        PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
+        SceneManager.LoadScene(levelSelect);  
     }
 
     public void Quit()
     {
         Time.timeScale = 1f;
         Destroy(StartMenu.menu.gameObject);
+        TouchesScript.touches = 0;
+        StatsManager.TotalTime += Time.timeSinceLevelLoad;
+        PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
+        PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
         SceneManager.LoadScene(mainMenu);
 
     }

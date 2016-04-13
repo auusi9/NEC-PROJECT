@@ -23,21 +23,16 @@ public class MusicManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-    }
 
-	// Use this for initialization
-	void Start () {
-       
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        StatsManager.TotalAttempts = PlayerPrefs.GetInt("TotalAttempts");
+        StatsManager.TotalRebounds = PlayerPrefs.GetInt("TotalRebounds");
+        StatsManager.TotalTime = PlayerPrefs.GetFloat("TotalTime");
+    }
 
     void FixedUpdate()
     {
-        if(SceneManager.GetActiveScene().buildIndex != currentscene)
+        
+        if (SceneManager.GetActiveScene().buildIndex != currentscene)
         {
             if (SceneManager.GetActiveScene().buildIndex < 2 && currentscene >= 2)
             {
@@ -51,8 +46,9 @@ public class MusicManager : MonoBehaviour {
                 GetComponent<AudioSource>().clip = GameplayMusic;
                 GetComponent<AudioSource>().Play();
             }
-
+           
             currentscene = SceneManager.GetActiveScene().buildIndex;
         }
     }
+
 }

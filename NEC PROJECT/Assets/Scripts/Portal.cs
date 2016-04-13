@@ -8,6 +8,13 @@ public class Portal : MonoBehaviour {
     public string CurrentScene;
     public GameObject rect;
     public GameObject Complete;
+    int LevelScore;
+    void Start()
+    {
+        
+        StatsManager.TotalAttempts++;
+        PlayerPrefs.SetInt("TotalAttempts", StatsManager.TotalAttempts);
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -15,9 +22,13 @@ public class Portal : MonoBehaviour {
         {
             Invoke("LoadComplete", 1.7f);
             Invoke("LoadNextLevel", 3.0f);
+            StatsManager.TotalTime += Time.timeSinceLevelLoad;
+            PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
+            PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
             rect.GetComponent<FreezeRotation>().enabled = true;
             PlayerPrefs.SetInt(NextScene, 1);
-            Destroy(StartMenu.menu.gameObject);
+            if(StartMenu.menu != null)
+                Destroy(StartMenu.menu.gameObject);
         }
     }
    
@@ -27,9 +38,14 @@ public class Portal : MonoBehaviour {
         {
             TouchesScript.touches = 0;
             StartMenu.menu.gameObject.SetActive(true);
+            StatsManager.TotalTime += Time.timeSinceLevelLoad;
+            PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime );
+            PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
             Time.timeScale = 0f;
             SceneManager.LoadScene(CurrentScene);
         }
+        
+
     }
 
     void LoadNextLevel()
