@@ -28,6 +28,7 @@ public class PauseMenu : MonoBehaviour {
     {
         Time.timeScale = 0f;
         Pause_Menu.SetActive(true);
+
     }
 
     public void Resume()
@@ -39,12 +40,16 @@ public class PauseMenu : MonoBehaviour {
     public void LevelSelect()
     {
         Time.timeScale = 1f;
+        Destroy(StartMenu.menu.gameObject);
         SceneManager.LoadScene(levelSelect);
+       
     }
 
     public void Quit()
     {
         Time.timeScale = 1f;
+        Destroy(StartMenu.menu.gameObject);
         SceneManager.LoadScene(mainMenu);
+
     }
 }

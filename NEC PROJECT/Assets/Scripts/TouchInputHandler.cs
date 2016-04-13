@@ -24,7 +24,7 @@ public class TouchInputHandler : MonoBehaviour
     void Update()
     {
 
-#if UNITY_EDITOR_WIN
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN	
         // if unity editor // Mouse Input
 
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
@@ -99,7 +99,8 @@ public class TouchInputHandler : MonoBehaviour
                     }
                     if(touch.phase == TouchPhase.Ended)
                     {
-                            touchArray[i] = null;
+                        touchArray[i].SendMessage("onTouchUp", new Vector3(touch.position.x, touch.position.y), SendMessageOptions.DontRequireReceiver);
+                        touchArray[i] = null;
                     }
                 }
             }

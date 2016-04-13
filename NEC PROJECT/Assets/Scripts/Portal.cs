@@ -8,7 +8,6 @@ public class Portal : MonoBehaviour {
     public string CurrentScene;
     public GameObject rect;
     public GameObject Complete;
-   
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -18,6 +17,7 @@ public class Portal : MonoBehaviour {
             Invoke("LoadNextLevel", 3.0f);
             rect.GetComponent<FreezeRotation>().enabled = true;
             PlayerPrefs.SetInt(NextScene, 1);
+            Destroy(StartMenu.menu.gameObject);
         }
     }
    
@@ -26,6 +26,8 @@ public class Portal : MonoBehaviour {
         if (GameObject.FindGameObjectsWithTag("Player").Length == 0)
         {
             TouchesScript.touches = 0;
+            StartMenu.menu.gameObject.SetActive(true);
+            Time.timeScale = 0f;
             SceneManager.LoadScene(CurrentScene);
         }
     }

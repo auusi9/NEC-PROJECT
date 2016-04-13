@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public class Ball : MonoBehaviour {
 
     public Object ChildSprite;
-    public string LevelName;
     public Rigidbody2D ball;
     public Vector3 ball_position;
     public Object TouchAnim;
     public Animator TouchUiAnimator;
+
     float actual_time;
     float invencibility = 0.0f;
     float speed;
@@ -48,7 +48,7 @@ public class Ball : MonoBehaviour {
             {
                 if ((Time.time - invencibility) > 0.25f && invulnerable == false)
                 {
-
+                  
                     DieAnimation();
                 }
             }
@@ -249,7 +249,6 @@ public class Ball : MonoBehaviour {
         BallSize = clone.BallSize;
     }
 
-
     void DieAnimation()
     {
             anim.SetBool("Die", true);
@@ -257,17 +256,5 @@ public class Ball : MonoBehaviour {
             Destroy(ChildSprite);
             Destroy(GetComponent<Sprite>());
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

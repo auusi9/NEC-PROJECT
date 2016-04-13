@@ -6,133 +6,58 @@ using UnityEngine.UI;
 
 public class MenuRotation : MonoBehaviour
 {
-    public GameObject textplay;
-    public GameObject button_play_chosen;
-    public GameObject light_chose;
-    public GameObject TextSettings;
-    public GameObject SettingsChosen;
-    public GameObject TextStats;
-    public GameObject StatsChosen;
-    public GameObject TextAbout;
-    public GameObject AboutChosen;
-
+    float ang;
+    bool GoTo = false;
+    float angleToGo = 325;
+    float currentAngle = 135;
     float baseAngle2;
     void Start()
     {
         Time.timeScale = 1.0f;
 
-
+       transform.rotation = Quaternion.AngleAxis(135, Vector3.forward);
+        GoTo = true;
     }
+
     public void LoadPlayScene()
     {
         SceneManager.LoadScene("LevelMenu");
     }
-
     public void OnStartGame()
     {
         //Debug.Log("You pressed play button!");
         //Add load for new scene here.
         LoadPlayScene();
-
     }
     public void OnSettingsGame()
     {
         Debug.Log("You pressed settings button!");
         //Add load for new scene here.
-        
-
     }
     public void OnStatsGame()
     {
         Debug.Log("You pressed Stats button!");
         //Add load for new scene here.
-        
-
     }
     public void OnAboutGame()
     {
         Debug.Log("You pressed About us button!");
         //Add load for new scene here.
-        
+    }
 
+    void Update()
+    {
+        if(GoTo == true)
+        {
+            GoToAngle();
+        }
     }
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
     }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-
-        if (col.gameObject.name == "PlayButton")
-        {
-           
-                textplay.SetActive(true);
-                button_play_chosen.SetActive(true);
-                light_chose.SetActive(true);
-           
-        }
-        else if (col.gameObject.name == "SettingButton")
-        {
-            
-                TextSettings.SetActive(true);
-                SettingsChosen.SetActive(true);
-                light_chose.SetActive(true);
-            
-        }
-        else if (col.gameObject.name == "StatsButton")
-        {
-            
-                TextStats.SetActive(true);
-                StatsChosen.SetActive(true);
-                light_chose.SetActive(true);
-            
-        }
-        else if (col.gameObject.name == "AboutButton")
-        {
-           
-                TextAbout.SetActive(true);
-                AboutChosen.SetActive(true);
-                light_chose.SetActive(true);
-            
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.name == "PlayButton")
-        {
-           
-                textplay.SetActive(false);
-                button_play_chosen.SetActive(false);
-                light_chose.SetActive(false);
-            
-        }
-        else if (col.gameObject.name == "SettingButton")
-        {
-            
-                TextSettings.SetActive(false);
-                SettingsChosen.SetActive(false);
-                light_chose.SetActive(false);
-            
-        }
-        else if (col.gameObject.name == "StatsButton")
-        {
-            
-                TextStats.SetActive(false);
-                StatsChosen.SetActive(false);
-                light_chose.SetActive(false);
-            
-        }
-        else if (col.gameObject.name == "AboutButton")
-        {
-            
-                TextAbout.SetActive(false);
-                AboutChosen.SetActive(false);
-                light_chose.SetActive(false);
-            
-        }
-    }
+    
+   
 
     void onTouchDown(Vector3 position)
     {
@@ -140,24 +65,73 @@ public class MenuRotation : MonoBehaviour
         pos = position - pos;
         baseAngle2 = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg;
         baseAngle2 -= Mathf.Atan2(transform.right.y, transform.right.x) * Mathf.Rad2Deg;
-
+         
     }
 
     void onTouchStay(Vector3 position)
     {
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         pos = position - pos;
-        float ang = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg - baseAngle2;
+        ang = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg - baseAngle2;
         transform.rotation = Quaternion.AngleAxis(ang, Vector3.forward);
     }
 
     void onTouchUp()
     {
-        //Add Code 
+        float angle = transform.rotation.eulerAngles.z;
+
+        if (angle > 45f && angle < 135f )
+        {
+            GoTo = true;
+            angleToGo = 90;
+            //transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+        }
+        else if (angle >= 135f  && angle < 225f)
+        {
+            GoTo = true;
+            angleToGo = 180;
+            //transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+        }
+        else if (angle >= 225f  && angle < 315f)
+        {
+            GoTo = true;
+            angleToGo = 270;
+            
+            //transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+        }
+        else if (angle > 315f || angle < 45f)
+        {
+            GoTo = true;
+            angleToGo = 0;
+            //transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+        }
+        currentAngle = angle;
+        if (currentAngle == 45 || currentAngle == 225 || currentAngle == 315 || currentAngle == 135) currentAngle++;
     }
     void onTouchExit()
     {
         //Add Code 
     }
+
+    void GoToAngle()
+    {
+        currentAngle = Mathf.Round(currentAngle);
+        if(currentAngle == angleToGo)
+        {
+            currentAngle = angleToGo;
+            GoTo = false;
+        }
+         if (currentAngle > angleToGo && currentAngle < 315)
+            currentAngle--;
+        else if (currentAngle < angleToGo || currentAngle > 315)
+            currentAngle++;
+        if (currentAngle == 360) currentAngle = 0;
+
+      
+        
+        transform.rotation = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+
+    }
+
 
 }
