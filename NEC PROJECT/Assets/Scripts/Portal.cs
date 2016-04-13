@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Portal : MonoBehaviour {
@@ -8,6 +9,7 @@ public class Portal : MonoBehaviour {
     public string CurrentScene;
     public GameObject rect;
     public GameObject Complete;
+    public Text Score;
     int LevelScore;
     void Start()
     {
@@ -22,11 +24,14 @@ public class Portal : MonoBehaviour {
         {
             Invoke("LoadComplete", 1.7f);
             Invoke("LoadNextLevel", 3.0f);
+            
             StatsManager.TotalTime += Time.timeSinceLevelLoad;
             PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
             PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
             rect.GetComponent<FreezeRotation>().enabled = true;
             PlayerPrefs.SetInt(NextScene, 1);
+            CalculateScore();
+            Debug.Log(LevelScore);
             if(StartMenu.menu != null)
                 Destroy(StartMenu.menu.gameObject);
         }
@@ -44,8 +49,8 @@ public class Portal : MonoBehaviour {
             Time.timeScale = 0f;
             SceneManager.LoadScene(CurrentScene);
         }
+       
         
-
     }
 
     void LoadNextLevel()
@@ -57,5 +62,59 @@ public class Portal : MonoBehaviour {
     void LoadComplete()
     {
         Complete.SetActive(true);
+    }
+    void CalculateScore()
+    {
+        int penalization = 50;
+        int totalpenalization = 0;
+        int j = 0;
+        for (int i = 0; i < TouchesScript.touches; i++)
+        {
+            if (i - j == 2)
+            {
+                if (penalization != 10) penalization--;
+                totalpenalization = totalpenalization - penalization;
+                j = i;
+            }
+            else totalpenalization -= penalization;
+        }
+        
+       
+        j = 0;
+        penalization = 18;
+        for (int i = 0; i < (Time.timeSinceLevelLoad*10); i++)
+        {
+            if (i - j == 30)
+            {
+                if (penalization != 10) penalization--;
+                totalpenalization = totalpenalization - penalization;
+                j = i;
+            }
+            else totalpenalization -= penalization ;
+        }
+        Debug.Log("Total Penalty: " + totalpenalization);
+        Debug.Log("Time: " + Time.timeSinceLevelLoad);
+        LevelScore = LevelScore + totalpenalization + 10000;
+
+        if(LevelScore < 0)
+        {
+            LevelScore = 0;
+        }
+        Score.text = "Score: " + LevelScore;
+        Debug.Log(PlayerPrefs.GetInt(CurrentScene + "Score"));
+        if (LevelScore > PlayerPrefs.GetInt(CurrentScene + "Score"))
+        {
+            
+            StatsManager.TotalScore += (LevelScore - PlayerPrefs.GetInt(CurrentScene + "Score"));
+            PlayerPrefs.SetInt(CurrentScene + "Score", LevelScore);
+            PlayerPrefs.SetInt("TotalScore", StatsManager.TotalScore);
+            Debug.Log(StatsManager.TotalScore);
+        }
+    }
+
+    void BonusScore(int bonus)
+    {
+        LevelScore += bonus;
+        Debug.Log("Bonus:" + bonus);
     }
 }

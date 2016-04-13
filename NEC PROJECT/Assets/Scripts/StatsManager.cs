@@ -8,12 +8,14 @@ public class StatsManager : MonoBehaviour {
     public static int TotalRebounds;
     public static int TotalAttempts;
     public static float TotalTime;
+    public static int TotalScore;
     int seconds;
     int minute;
     int hour;
     public Text totalattempts;
     public Text totalrebounds;
     public Text totaltime;
+    public Text totalscore;
     // Use this for initialization
     void Start ()
     {
@@ -26,13 +28,13 @@ public class StatsManager : MonoBehaviour {
        
         totalattempts.text = "" +TotalAttempts;
         totalrebounds.text = "" + TotalRebounds;
-
+        totalscore.text = "" + TotalScore;
         seconds = Mathf.RoundToInt(TotalTime) % 60;
         minute = (Mathf.RoundToInt(TotalTime) / 60) % 60;
         hour = (Mathf.RoundToInt(TotalTime) / 3600) % 24;
 
         Debug.Log(TotalTime);
-       totaltime.text = "H:" + hour + "min:" + minute + "sec:" + seconds;
+       totaltime.text = "" + hour + "h " + minute + "m " + seconds + "s";
 	}
 
 
@@ -46,5 +48,6 @@ public class StatsManager : MonoBehaviour {
         TotalAttempts = 0;
         TotalTime = 0f;
         TotalRebounds = 0;
+        TotalScore = 0;
     }
 }

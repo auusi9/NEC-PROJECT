@@ -27,6 +27,7 @@ public class MusicManager : MonoBehaviour {
         StatsManager.TotalAttempts = PlayerPrefs.GetInt("TotalAttempts");
         StatsManager.TotalRebounds = PlayerPrefs.GetInt("TotalRebounds");
         StatsManager.TotalTime = PlayerPrefs.GetFloat("TotalTime");
+        StatsManager.TotalScore = PlayerPrefs.GetInt("TotalScore");
     }
 
     void FixedUpdate()
@@ -34,13 +35,13 @@ public class MusicManager : MonoBehaviour {
         
         if (SceneManager.GetActiveScene().buildIndex != currentscene)
         {
-            if (SceneManager.GetActiveScene().buildIndex < 2 && currentscene >= 2)
+            if (SceneManager.GetActiveScene().buildIndex < 4 && currentscene >= 4)
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = MenuMusic;
                 GetComponent<AudioSource>().Play();
             }
-            else if (SceneManager.GetActiveScene().buildIndex >= 2 && currentscene < 2)
+            else if (SceneManager.GetActiveScene().buildIndex >= 4 && currentscene < 4)
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = GameplayMusic;
