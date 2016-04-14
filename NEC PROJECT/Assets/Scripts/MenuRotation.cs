@@ -67,7 +67,7 @@ public class MenuRotation : MonoBehaviour
     public void OnAboutGame()
     {
         MenuAudio.PlayOneShot(OnClick, 1);
-        LoadAboutUsScene();
+        SceneManager.LoadScene("AboutUs");
     }
 
     void Update()

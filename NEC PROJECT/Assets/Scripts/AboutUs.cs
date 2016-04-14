@@ -40,4 +40,12 @@ public class AboutUs : MonoBehaviour {
     {
         SceneManager.LoadScene("MainMenu");
     }
+    void OnAboutUs()
+    {
+        SceneManager.LoadScene("AboutUs");
+    }
+    void OnCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
