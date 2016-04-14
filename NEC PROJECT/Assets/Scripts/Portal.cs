@@ -74,7 +74,7 @@ public class Portal : MonoBehaviour {
         {
             if (i - j == 2)
             {
-                if (penalization != 10) penalization--;
+                if (penalization != 6) penalization--;
                 totalpenalization = totalpenalization - penalization;
                 j = i;
             }
@@ -88,7 +88,7 @@ public class Portal : MonoBehaviour {
         {
             if (i - j == 30)
             {
-                if (penalization != 10) penalization--;
+                if (penalization != 6) penalization--;
                 totalpenalization = totalpenalization - penalization;
                 j = i;
             }
