@@ -43,32 +43,32 @@ public class LevelMenuRotation : MonoBehaviour {
         {
             GoTo = true;
             angleToGo = 108;
-            //transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+          
         }
         else if (angle >= 144f && angle < 216f)
         {
             GoTo = true;
             angleToGo = 180;
-            //transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+            
         }
         else if (angle >= 216f && angle < 288f)
         {
             GoTo = true;
             angleToGo =252;
 
-            //transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+            
         }
         else if (angle > 288f && angle < 360f)
         {
             GoTo = true;
             angleToGo = 324;
-            //transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+           
         }
         else if (angle >360f || angle < 72f)
         {
             GoTo = true;
             angleToGo = 36;
-            //transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+            
         }
         currentAngle = angle;
         if (currentAngle == 72 || currentAngle == 144 || currentAngle == 360 || currentAngle == 288 || currentAngle == 216) currentAngle++;

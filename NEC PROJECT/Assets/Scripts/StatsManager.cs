@@ -9,6 +9,7 @@ public class StatsManager : MonoBehaviour {
     public static int TotalAttempts;
     public static float TotalTime;
     public static int TotalScore;
+    public static int TotalLevels;
     int seconds;
     int minute;
     int hour;
@@ -16,6 +17,7 @@ public class StatsManager : MonoBehaviour {
     public Text totalrebounds;
     public Text totaltime;
     public Text totalscore;
+    public Text totallevels;
     // Use this for initialization
     void Start ()
     {
@@ -25,7 +27,7 @@ public class StatsManager : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate ()
     {
-       
+        totallevels.text = " " + TotalLevels;
         totalattempts.text = "" +TotalAttempts;
         totalrebounds.text = "" + TotalRebounds;
         totalscore.text = "" + TotalScore;
@@ -49,5 +51,6 @@ public class StatsManager : MonoBehaviour {
         TotalTime = 0f;
         TotalRebounds = 0;
         TotalScore = 0;
+        TotalLevels = 0;
     }
 }

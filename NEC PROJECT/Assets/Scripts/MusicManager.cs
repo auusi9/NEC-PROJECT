@@ -28,6 +28,7 @@ public class MusicManager : MonoBehaviour {
         StatsManager.TotalRebounds = PlayerPrefs.GetInt("TotalRebounds");
         StatsManager.TotalTime = PlayerPrefs.GetFloat("TotalTime");
         StatsManager.TotalScore = PlayerPrefs.GetInt("TotalScore");
+        StatsManager.TotalLevels = PlayerPrefs.GetInt("TotalLevels");
     }
 
     void FixedUpdate()

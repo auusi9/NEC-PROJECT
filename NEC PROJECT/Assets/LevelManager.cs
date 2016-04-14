@@ -7,32 +7,25 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
 
-    int world;
+    public static int world;
     public GameObject world1_button;
     public GameObject world2_button;
     public GameObject world3_button;
     public GameObject world4_button;
     public GameObject world5_button;
 
-    public GameObject locked;
+    public GameObject locked1;
+    public GameObject locked2;
+    public GameObject locked3;
+    public GameObject locked4;
+    public GameObject locked5;
 
-    [System.Serializable]
-    public class level
+    private GameObject[] background;
+
+    // Use this for initialization
+    void Start ()
     {
-        public string levelname;
-        public int worldnumber;
-        public int unlocked;
-        public bool interactable;
-
-        public Button.ButtonClickedEvent OnClickEvent;
-
-    }
-    public List<level> levelList;
-
-	// Use this for initialization
-	void Start ()
-    {
-        
+        PlayerPrefs.SetInt("NECSCENE", 1);
         world = 1;
 	}
 	
@@ -50,26 +43,31 @@ public class LevelManager : MonoBehaviour {
                 world1_button.SetActive(true);
                 world2_button.SetActive(false);
                 world5_button.SetActive(false);
+                CheckLockedWorld1();
                 break;
             case 2:
                 world2_button.SetActive(true);
                 world3_button.SetActive(false);
                 world1_button.SetActive(false);
+                CheckLockedWorld2();
                 break;
             case 3:
                 world3_button.SetActive(true);
                 world2_button.SetActive(false);
                 world4_button.SetActive(false);
+                CheckLockedWorld3();
                 break;
             case 4:
                 world4_button.SetActive(true);
                 world3_button.SetActive(false);
                 world5_button.SetActive(false);
+                CheckLockedWorld4();
                 break;
             case 5:
                 world5_button.SetActive(true);
                 world1_button.SetActive(false);
                 world4_button.SetActive(false);
+                CheckLockedWorld5();
                 break;
         }
 
@@ -79,16 +77,31 @@ public class LevelManager : MonoBehaviour {
     {
         world++;
         if (world == 6) world = 1;
+        background = GameObject.FindGameObjectsWithTag("Background");
+
+        foreach (GameObject r in background)
+        {
+           // r.transform.Translate(Vector3.left * 13.87f);
+        }
+
     }
     void ChangeWorldLeft()
     {
         world--;
         if (world == 0) world = 5;
+        background = GameObject.FindGameObjectsWithTag("Background");
+
+        foreach (GameObject r in background)
+        {
+            //r.transform.Translate(Vector3.right * 13.87f);
+        }
     }
+
     void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
+
     void LoadLevel1()
     {
         switch (world)
@@ -266,5 +279,150 @@ public class LevelManager : MonoBehaviour {
                 break;
         }
     }
- 
+
+    void CheckLockedWorld1()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE2") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE3") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE4") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE5") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+
+    void CheckLockedWorld2()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE6") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE7") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE8") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE9") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE10") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+
+    void CheckLockedWorld3()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE11") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE12") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE13") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE14") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE15") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+
+    void CheckLockedWorld4()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE16") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE17") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE18") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE19") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE20") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+
+    void CheckLockedWorld5()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE21") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE22") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE23") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE24") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE25") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+
 }

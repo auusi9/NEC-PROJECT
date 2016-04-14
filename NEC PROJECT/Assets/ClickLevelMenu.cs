@@ -60,33 +60,199 @@ public class ClickLevelMenu : MonoBehaviour {
 
     }
 
+    
+
     void OnTriggerEnter2D(Collider2D col)
     {
 
         if (col.gameObject.name == "Level1")
         {
+            switch(LevelManager.world)
+            {
+                case 1:
+                        level1_chosen.SetActive(true);
+                        break;
+                    
+                case 2:
+                    if (PlayerPrefs.GetInt("NECSCENE6") == 1)
+                    { 
+                        level1_chosen.SetActive(true);
+                    }
+                    break;
+                case 3:
+                    if (PlayerPrefs.GetInt("NECSCENE11") == 1)
+                    {
+                        level1_chosen.SetActive(true);
+                    }
+                    break;
+                case 4:
+                    if (PlayerPrefs.GetInt("NECSCENE16") == 1)
+                    {    
+                        level1_chosen.SetActive(true);
+                    }
+                    break;
+                case 5:
+                    if (PlayerPrefs.GetInt("NECSCENE21") == 1)
+                    {   
+                        level1_chosen.SetActive(true);
+                    }
+                    break;
+            }
             level1_button.SetActive(true);
-            level1_chosen.SetActive(true);
+
         }
         else if (col.gameObject.name == "Level2")
         {
+            switch (LevelManager.world)
+            {
+                case 1:
+                    if (PlayerPrefs.GetInt("NECSCENE2") == 1)
+                    {
+                        level2_chosen.SetActive(true);
+                    }
+                    break;
+
+                case 2:
+                    if (PlayerPrefs.GetInt("NECSCENE7") == 1)
+                    {
+                        level2_chosen.SetActive(true);
+                    }
+                    break;
+                case 3:
+                    if (PlayerPrefs.GetInt("NECSCENE12") == 1)
+                    {
+                        level2_chosen.SetActive(true);
+                    }
+                    break;
+                case 4:
+                    if (PlayerPrefs.GetInt("NECSCENE17") == 1)
+                    {   
+                        level2_chosen.SetActive(true);
+                    }
+                    break;
+                case 5:
+                    if (PlayerPrefs.GetInt("NECSCENE22") == 1)
+                    {  
+                        level2_chosen.SetActive(true);
+                    }
+                    break;
+            }
             level2_button.SetActive(true);
-            level2_chosen.SetActive(true);
         }
         else if (col.gameObject.name == "Level3")
         {
+            switch (LevelManager.world)
+            {
+                case 1:
+                    if (PlayerPrefs.GetInt("NECSCENE3") == 1)
+                    {   
+                        level3_chosen.SetActive(true);
+                    }
+                    break;
+
+                case 2:
+                    if (PlayerPrefs.GetInt("NECSCENE8") == 1)
+                    {
+                        level3_chosen.SetActive(true);
+                    }
+                    break;
+                case 3:
+                    if (PlayerPrefs.GetInt("NECSCENE13") == 1)
+                    {
+                        level3_chosen.SetActive(true);
+                    }
+                    break;
+                case 4:
+                    if (PlayerPrefs.GetInt("NECSCENE18") == 1)
+                    {
+                        level3_chosen.SetActive(true);
+                    }
+                    break;
+                case 5:
+                    if (PlayerPrefs.GetInt("NECSCENE23") == 1)
+                    {
+                        level3_chosen.SetActive(true);
+                    }
+                    break;
+            }
             level3_button.SetActive(true);
-            level3_chosen.SetActive(true);  
+
         }
         else if (col.gameObject.name == "Level4")
         {
+            switch (LevelManager.world)
+            {
+                case 1:
+                    if (PlayerPrefs.GetInt("NECSCENE4") == 1)
+                    { 
+                        level4_chosen.SetActive(true);
+                    }
+                    break;
+
+                case 2:
+                    if (PlayerPrefs.GetInt("NECSCENE9") == 1)
+                    {
+                        level4_chosen.SetActive(true);
+                    }
+                    break;
+                case 3:
+                    if (PlayerPrefs.GetInt("NECSCENE14") == 1)
+                    {
+                        level4_chosen.SetActive(true);
+                    }
+                    break;
+                case 4:
+                    if (PlayerPrefs.GetInt("NECSCENE19") == 1)
+                    {
+                        level4_chosen.SetActive(true);
+                    }
+                    break;
+                case 5:
+                    if (PlayerPrefs.GetInt("NECSCENE24") == 1)
+                    {
+                        level4_chosen.SetActive(true);
+                    }
+                    break;
+            }
             level4_button.SetActive(true);
-            level4_chosen.SetActive(true);
         }
         else if (col.gameObject.name == "Level5")
         {
+            switch (LevelManager.world)
+            {
+                case 1:
+                    if (PlayerPrefs.GetInt("NECSCENE5") == 1)
+                    {
+                        level5_chosen.SetActive(true);
+                    }
+                    break;
+
+                case 2:
+                    if (PlayerPrefs.GetInt("NECSCENE10") == 1)
+                    {
+                        level5_chosen.SetActive(true);
+                    }
+                    break;
+                case 3:
+                    if (PlayerPrefs.GetInt("NECSCENE15") == 1)
+                    {
+                        level5_chosen.SetActive(true);
+                    }
+                    break;
+                case 4:
+                    if (PlayerPrefs.GetInt("NECSCENE20") == 1)
+                    {
+                        level5_chosen.SetActive(true);
+                    }
+                    break;
+                case 5:
+                    if (PlayerPrefs.GetInt("NECSCENE25") == 1)
+                    {
+                        level5_chosen.SetActive(true);
+                    }
+                    break;
+            }
             level5_button.SetActive(true);
-            level5_chosen.SetActive(true);
         }
     }
 

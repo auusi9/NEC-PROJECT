@@ -26,6 +26,8 @@ public class Portal : MonoBehaviour {
             Invoke("LoadNextLevel", 3.0f);
             
             StatsManager.TotalTime += Time.timeSinceLevelLoad;
+            StatsManager.TotalLevels++;
+            PlayerPrefs.SetInt("TotalLevels", StatsManager.TotalLevels);
             PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
             PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
             rect.GetComponent<FreezeRotation>().enabled = true;
