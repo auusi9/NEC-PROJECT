@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour {
     float actual_time;
     float invencibility = 0.0f;
     float speed;
+    float volumeFX = PlayerPrefs.GetFloat("FX volume");
     bool velocity;
     bool shield;
     bool doubleBall;
@@ -41,6 +42,7 @@ public class Ball : MonoBehaviour {
         speed = 5.0f;
         bounceSound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>(); 
+        
 	}
 
     void OnCollisionEnter2D(Collision2D col)
@@ -74,7 +76,7 @@ public class Ball : MonoBehaviour {
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
             Vector3 pos = contact.point;
             Instantiate(TouchAnim, pos, rot);
-            bounceSound.PlayOneShot(bounceAudio,1);
+            bounceSound.PlayOneShot(bounceAudio, volumeFX);
             TouchesScript.touches++;
             StatsManager.TotalRebounds++; 
             
@@ -102,7 +104,7 @@ public class Ball : MonoBehaviour {
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
             velocity = true;
-            bounceSound.PlayOneShot(BadPowerUpSound, 1);
+            bounceSound.PlayOneShot(BadPowerUpSound, volumeFX);
             portal.SendMessage("BonusScore", 400);
             Destroy(col.gameObject);
 
@@ -114,7 +116,7 @@ public class Ball : MonoBehaviour {
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, 1);
+            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
@@ -125,7 +127,7 @@ public class Ball : MonoBehaviour {
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, 1);
+            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
@@ -138,7 +140,7 @@ public class Ball : MonoBehaviour {
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, 1);
+            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
@@ -150,7 +152,7 @@ public class Ball : MonoBehaviour {
             bigBall = true;
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(BadPowerUpSound, 1);
+            bounceSound.PlayOneShot(BadPowerUpSound, volumeFX);
             portal.SendMessage("BonusScore", 400);
             Destroy(col.gameObject);
         }
@@ -162,7 +164,7 @@ public class Ball : MonoBehaviour {
             BallSize = new Vector3(0.7f, 0.7f, 1.0f);
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, 1);
+            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);            
         }

@@ -54,9 +54,9 @@ public class MenuRotation : MonoBehaviour
     }
     public void OnSettingsGame()
     {
-        Debug.Log("You pressed settings button!");
         //Add load for new scene here.
         MenuAudio.PlayOneShot(OnClick, 1);
+        SceneManager.LoadScene("Settings");
     }
     public void OnStatsGame()
     {
