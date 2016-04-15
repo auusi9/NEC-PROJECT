@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject locked4;
     public GameObject locked5;
 
-    private GameObject[] background;
+    public  GameObject[] background;
 
     public Rigidbody2D MoveCamera;
 
@@ -77,21 +77,49 @@ public class LevelManager : MonoBehaviour {
     }
     void ChangeWorldRight()
     {
+        int lastworld = world - 1;
         world++;
         if (world == 6) world = 1;
         MoveCamera.transform.position = new Vector3(-13.87f, 0);
-        MoveCamera.velocity = new Vector2(6.5f, 0);
+        MoveCamera.velocity = new Vector2(8.5f, 0);
         
+        foreach(GameObject r in background)
+        {
+            if (r == background[world-1])
+            {
+                r.SetActive(true);
+                r.transform.position = new Vector3(0, 0, 0);
+            }
+            else if (r == background[lastworld])
+            {
+                r.transform.position = new Vector3(-15, 0, 0);
+            }
+            else r.SetActive(false);
+        }
         
         
     }
     void ChangeWorldLeft()
     {
+        int lastworld = world - 1;
         world--;
         if (world == 0) world = 5;
         MoveCamera.transform.position = new Vector3(13.87f, 0);
-        MoveCamera.velocity = new Vector2(-6.5f, 0);
+        MoveCamera.velocity = new Vector2(-8.5f, 0);
 
+        foreach (GameObject r in background)
+        {
+            if (r == background[world - 1])
+            {
+                r.SetActive(true);
+                r.transform.position = new Vector3(0, 0, 0);
+            }
+            else if (r == background[lastworld])
+            {
+                r.transform.position = new Vector3(15, 0, 0);
+            }
+            else r.SetActive(false);
+        }
 
     }
 

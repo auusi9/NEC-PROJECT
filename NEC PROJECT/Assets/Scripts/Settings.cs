@@ -11,7 +11,9 @@ public class Settings : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
+        guislider.value = PlayerPrefs.GetFloat("Music volume");
+        guislider2.value = PlayerPrefs.GetFloat("FX volume");
 	}
 	
 	// Update is called once per frame
