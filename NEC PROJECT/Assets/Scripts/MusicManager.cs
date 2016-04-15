@@ -39,11 +39,13 @@ public class MusicManager : MonoBehaviour {
         {
             PlayerPrefs.SetFloat("FX volume", 1);
         }
+        if (PlayerPrefs.HasKey("Music volume"))
+            GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music volume");
     }
 
     void FixedUpdate()
     {
-        if (PlayerPrefs.GetFloat("Music volume") != null)
+       if(SceneManager.GetActiveScene().buildIndex == 5)
             GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music volume");
 
         if (SceneManager.GetActiveScene().buildIndex != currentscene)

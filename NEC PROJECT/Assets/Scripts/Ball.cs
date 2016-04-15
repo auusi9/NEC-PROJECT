@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour {
     float actual_time;
     float invencibility = 0.0f;
     float speed;
-    float volumeFX = PlayerPrefs.GetFloat("FX volume");
+    float volumeFX;
     bool velocity;
     bool shield;
     bool doubleBall;
@@ -36,8 +36,9 @@ public class Ball : MonoBehaviour {
     
 
     // Use this for initialization
-    void Start () 
+    void Start ()
     {
+        float volumeFX = PlayerPrefs.GetFloat("FX volume");
         ball.AddForce(new Vector3(80.0f * initialSpeed.x, 80.0f * initialSpeed.y, 0.0f));
         speed = 5.0f;
         bounceSound = GetComponent<AudioSource>();

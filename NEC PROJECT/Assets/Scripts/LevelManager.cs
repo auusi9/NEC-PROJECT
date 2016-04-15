@@ -22,6 +22,8 @@ public class LevelManager : MonoBehaviour {
 
     private GameObject[] background;
 
+    public Rigidbody2D MoveCamera;
+
     // Use this for initialization
     void Start ()
     {
@@ -77,24 +79,20 @@ public class LevelManager : MonoBehaviour {
     {
         world++;
         if (world == 6) world = 1;
-        background = GameObject.FindGameObjectsWithTag("Background");
-
-        foreach (GameObject r in background)
-        {
-           // r.transform.Translate(Vector3.left * 13.87f);
-        }
-
+        MoveCamera.transform.position = new Vector3(-13.87f, 0);
+        MoveCamera.velocity = new Vector2(6.5f, 0);
+        
+        
+        
     }
     void ChangeWorldLeft()
     {
         world--;
         if (world == 0) world = 5;
-        background = GameObject.FindGameObjectsWithTag("Background");
+        MoveCamera.transform.position = new Vector3(13.87f, 0);
+        MoveCamera.velocity = new Vector2(-6.5f, 0);
 
-        foreach (GameObject r in background)
-        {
-            //r.transform.Translate(Vector3.right * 13.87f);
-        }
+
     }
 
     void LoadMainMenu()
