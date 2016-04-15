@@ -102,7 +102,7 @@ public class Portal : MonoBehaviour {
         {
             LevelScore = 0;
         }
-        Score.text = "Score: " + LevelScore;
+        Score.text = "" + LevelScore;
         Debug.Log(PlayerPrefs.GetInt(CurrentScene + "Score"));
         if (LevelScore > PlayerPrefs.GetInt(CurrentScene + "Score"))
         {
