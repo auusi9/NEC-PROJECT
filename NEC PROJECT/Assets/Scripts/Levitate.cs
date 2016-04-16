@@ -18,5 +18,6 @@ public class Levitate : MonoBehaviour
     {
         tempPosition.x += horizontalSpeed;
         tempPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verticalSpeed) * amplitude + tempPosition.y;
+        transform.position = tempPosition;
     }
 }
