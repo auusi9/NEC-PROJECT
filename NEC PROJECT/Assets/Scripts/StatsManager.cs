@@ -53,4 +53,23 @@ public class StatsManager : MonoBehaviour {
         TotalScore = 0;
         TotalLevels = 0;
     }
+    void UnlockLevels()
+    {
+
+        for(int i = 2; i <= 25;i++)
+        {
+            PlayerPrefs.SetInt("NECSCENE" + i, 1);
+
+        }
+
+    }
+
+
+
+
+
 }
+
+
+
+
