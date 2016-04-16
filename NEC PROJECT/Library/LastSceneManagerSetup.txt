@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/LevelMenu.unity
+- path: Assets/Scene/NECSCENE19.unity
   isLoaded: 1
   isActive: 1
