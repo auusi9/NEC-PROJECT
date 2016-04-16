@@ -12,6 +12,8 @@ public class ClickScript : MonoBehaviour {
     public GameObject TextAbout;
     public GameObject AboutChosen;
 
+    public GameObject[] button;
+
     void OnTriggerEnter2D(Collider2D col)
     {
 
@@ -20,6 +22,7 @@ public class ClickScript : MonoBehaviour {
 
             textplay.SetActive(true);
             button_play_chosen.SetActive(true);
+            button[0].SetActive(true);
 
 
         }
@@ -28,6 +31,7 @@ public class ClickScript : MonoBehaviour {
 
             TextSettings.SetActive(true);
             SettingsChosen.SetActive(true);
+            button[3].SetActive(true);
 
 
         }
@@ -36,6 +40,7 @@ public class ClickScript : MonoBehaviour {
 
             TextStats.SetActive(true);
             StatsChosen.SetActive(true);
+            button[1].SetActive(true);
 
 
         }
@@ -44,6 +49,7 @@ public class ClickScript : MonoBehaviour {
 
             TextAbout.SetActive(true);
             AboutChosen.SetActive(true);
+            button[2].SetActive(true);
 
 
         }
@@ -56,6 +62,7 @@ public class ClickScript : MonoBehaviour {
 
             textplay.SetActive(false);
             button_play_chosen.SetActive(false);
+            button[0].SetActive(false);
 
 
         }
@@ -64,6 +71,7 @@ public class ClickScript : MonoBehaviour {
 
             TextSettings.SetActive(false);
             SettingsChosen.SetActive(false);
+            button[3].SetActive(false);
 
 
         }
@@ -72,7 +80,7 @@ public class ClickScript : MonoBehaviour {
 
             TextStats.SetActive(false);
             StatsChosen.SetActive(false);
-
+            button[1].SetActive(false);
 
         }
         else if (col.gameObject.name == "AboutButton")
@@ -80,7 +88,7 @@ public class ClickScript : MonoBehaviour {
 
             TextAbout.SetActive(false);
             AboutChosen.SetActive(false);
-
+            button[2].SetActive(false);
 
         }
     }

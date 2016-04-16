@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject locked4;
     public GameObject locked5;
 
+
     public  GameObject[] background;
 
     public Rigidbody2D MoveCamera;

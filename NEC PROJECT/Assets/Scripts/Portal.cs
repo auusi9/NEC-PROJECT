@@ -26,7 +26,12 @@ public class Portal : MonoBehaviour {
             Invoke("LoadNextLevel", 3.0f);
             
             StatsManager.TotalTime += Time.timeSinceLevelLoad;
-            StatsManager.TotalLevels++;
+            if(PlayerPrefs.HasKey(CurrentScene + "Done") == false)
+            {
+                PlayerPrefs.SetInt(CurrentScene + "Done", 1);
+                StatsManager.TotalLevels++;
+            }
+            
             PlayerPrefs.SetInt("TotalLevels", StatsManager.TotalLevels);
             PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
             PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);

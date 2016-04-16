@@ -19,7 +19,7 @@ public class ClickLevelMenu : MonoBehaviour {
 
     public GameObject light_chose;
 
-
+    public GameObject[] button;
     void Start()
     {
         Time.timeScale = 1.0f;
@@ -99,6 +99,7 @@ public class ClickLevelMenu : MonoBehaviour {
                     break;
             }
             level1_button.SetActive(true);
+            button[0].SetActive(true);
 
         }
         else if (col.gameObject.name == "Level2")
@@ -138,6 +139,7 @@ public class ClickLevelMenu : MonoBehaviour {
                     break;
             }
             level2_button.SetActive(true);
+            button[1].SetActive(true);
         }
         else if (col.gameObject.name == "Level3")
         {
@@ -176,6 +178,7 @@ public class ClickLevelMenu : MonoBehaviour {
                     break;
             }
             level3_button.SetActive(true);
+            button[2].SetActive(true);
 
         }
         else if (col.gameObject.name == "Level4")
@@ -215,6 +218,7 @@ public class ClickLevelMenu : MonoBehaviour {
                     break;
             }
             level4_button.SetActive(true);
+            button[3].SetActive(true);
         }
         else if (col.gameObject.name == "Level5")
         {
@@ -253,6 +257,7 @@ public class ClickLevelMenu : MonoBehaviour {
                     break;
             }
             level5_button.SetActive(true);
+            button[4].SetActive(true);
         }
     }
 
@@ -262,25 +267,30 @@ public class ClickLevelMenu : MonoBehaviour {
         {
             level1_button.SetActive(false);
             level1_chosen.SetActive(false);
+            button[0].SetActive(false);
         }
         else if (col.gameObject.name == "Level2")
         {
             level2_button.SetActive(false);
             level2_chosen.SetActive(false);
+            button[1].SetActive(false);
         }
         else if (col.gameObject.name == "Level3")
         {
             level3_button.SetActive(false);
             level3_chosen.SetActive(false);
+            button[2].SetActive(false);
         }
         else if (col.gameObject.name == "Level4")
         {
             level4_button.SetActive(false);
+            button[3].SetActive(false);
             level4_chosen.SetActive(false);
         }
         else if (col.gameObject.name == "Level5")
         {
             level5_button.SetActive(false);
+            button[4].SetActive(false);
             level5_chosen.SetActive(false);
         }
     }
