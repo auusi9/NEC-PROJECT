@@ -22,23 +22,11 @@ public class Portal : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            Invoke("FinishLevel", 0.7f);
             Invoke("LoadComplete", 1.7f);
             Invoke("LoadNextLevel", 3.0f);
             
-            StatsManager.TotalTime += Time.timeSinceLevelLoad;
-            if(PlayerPrefs.HasKey(CurrentScene + "Done") == false)
-            {
-                PlayerPrefs.SetInt(CurrentScene + "Done", 1);
-                StatsManager.TotalLevels++;
-            }
-            
-            PlayerPrefs.SetInt("TotalLevels", StatsManager.TotalLevels);
-            PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
-            PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
-            rect.GetComponent<FreezeRotation>().enabled = true;
-            PlayerPrefs.SetInt(NextScene, 1);
-            CalculateScore();
-            Debug.Log(LevelScore);
+           
             if(StartMenu.menu != null)
                 Destroy(StartMenu.menu.gameObject);
         }
@@ -55,9 +43,7 @@ public class Portal : MonoBehaviour {
             PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
             Time.timeScale = 0f;
             SceneManager.LoadScene(CurrentScene);
-        }
-       
-        
+        }  
     }
 
     void LoadNextLevel()
@@ -123,5 +109,24 @@ public class Portal : MonoBehaviour {
     {
         LevelScore += bonus;
         Debug.Log("Bonus:" + bonus);
+    }
+
+    void FinishLevel()
+    {
+        StatsManager.TotalTime += Time.timeSinceLevelLoad;
+        if (PlayerPrefs.HasKey(CurrentScene + "Done") == false)
+        {
+            PlayerPrefs.SetInt(CurrentScene + "Done", 1);
+            StatsManager.TotalLevels++;
+        }
+
+        PlayerPrefs.SetInt("TotalLevels", StatsManager.TotalLevels);
+        PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
+        PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
+        rect.GetComponent<FreezeRotation>().enabled = true;
+        PlayerPrefs.SetInt(NextScene, 1);
+        CalculateScore();
+        Debug.Log(LevelScore);
+
     }
 }

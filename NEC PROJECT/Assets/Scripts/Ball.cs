@@ -32,8 +32,7 @@ public class Ball : MonoBehaviour {
     public AudioClip bounceAudio;
     public AudioClip GoodPowerUpSound;
     public AudioClip BadPowerUpSound;
-    private AudioSource bounceSound;
-    
+    private AudioSource bounceSound;  
 
     // Use this for initialization
     void Start ()
@@ -43,7 +42,6 @@ public class Ball : MonoBehaviour {
         speed = 5.0f;
         bounceSound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>(); 
-        
 	}
 
     void OnCollisionEnter2D(Collision2D col)
@@ -92,11 +90,11 @@ public class Ball : MonoBehaviour {
             GetComponent<Collider2D>().enabled = false;
             invulnerable = true;
             ball.velocity = Vector3.zero;
+            DeactivatePowerUps();
             ball.transform.SetParent(col.gameObject.transform);
             trail.SetActive(false);
             endrotation = true;
             portal = col.gameObject;
-            
         }
         else if (col.gameObject.tag == "SpeedUpPowerUp")
         {
@@ -110,7 +108,6 @@ public class Ball : MonoBehaviour {
             Destroy(col.gameObject);
 
         }
-
         else if (col.gameObject.tag == "ShieldPowerUp")
         {
             shield = true;
@@ -171,11 +168,14 @@ public class Ball : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
-    void Update ()
+
+    void Update()
     {
         ball.velocity = ball.velocity.normalized * speed;
-        
+    }
+    // Update is called once per frame
+    void LateUpdate ()
+    {  
         if(doubleBall == true)
         {
             Ball clone; 
@@ -183,7 +183,7 @@ public class Ball : MonoBehaviour {
             clone.GetComponentsfrom(this);
             doubleBall = false;
         }
-
+        //ShieldAnimation
         if (shield == true)
         {
             anim.SetBool("Shield", true);
@@ -275,6 +275,15 @@ public class Ball : MonoBehaviour {
             ball.velocity = Vector3.zero;
             Destroy(ChildSprite);
             Destroy(GetComponent<Sprite>());
+    }
+
+
+    void DeactivatePowerUps()
+    {
+        smallBall = false;
+        bigBall = false;
+        velocity = false;
+        velocityDown = false;
     }
 
 }
