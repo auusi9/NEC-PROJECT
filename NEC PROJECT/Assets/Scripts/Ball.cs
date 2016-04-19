@@ -9,11 +9,11 @@ public class Ball : MonoBehaviour {
     public Vector3 ball_position;
     public Object TouchAnim;
     public Animator TouchUiAnimator;
+    public Object ShieldBreak;
 
     float actual_time;
     float invencibility = 0.0f;
     float speed;
-    float volumeFX = 1;
     bool velocity;
     bool shield;
     bool doubleBall;
@@ -29,18 +29,14 @@ public class Ball : MonoBehaviour {
     Animator anim;
     public GameObject trail;
     public GameObject portal;
-    public AudioClip bounceAudio;
-    public AudioClip GoodPowerUpSound;
-    public AudioClip BadPowerUpSound;
-    private AudioSource bounceSound;  
+    
 
     // Use this for initialization
     void Start ()
     {
-       volumeFX = PlayerPrefs.GetFloat("FX volume");
+     
         ball.AddForce(new Vector3(80.0f * initialSpeed.x, 80.0f * initialSpeed.y, 0.0f));
         speed = 5.0f;
-        bounceSound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>(); 
 	}
 
@@ -53,13 +49,15 @@ public class Ball : MonoBehaviour {
             {
                 if ((Time.time - invencibility) > 0.25f && invulnerable == false)
                 {
-                  
+                    FXManager.instance.PlayDie();
                     DieAnimation();
                 }
             }
             else
             { 
-                shield = false; anim.SetBool("Shield", false);
+                shield = false;
+                anim.SetBool("Shield", false);
+                Instantiate(ShieldBreak,transform.position, transform.rotation);
                 invencibility = Time.time;
             }
         }
@@ -75,7 +73,7 @@ public class Ball : MonoBehaviour {
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
             Vector3 pos = contact.point;
             Instantiate(TouchAnim, pos, rot);
-            bounceSound.PlayOneShot(bounceAudio, volumeFX);
+            FXManager.instance.PlayBounce();
             TouchesScript.touches++;
             StatsManager.TotalRebounds++; 
             
@@ -94,6 +92,7 @@ public class Ball : MonoBehaviour {
             ball.transform.SetParent(col.gameObject.transform);
             trail.SetActive(false);
             endrotation = true;
+            FXManager.instance.PlayWin();
             portal = col.gameObject;
         }
         else if (col.gameObject.tag == "SpeedUpPowerUp")
@@ -103,7 +102,7 @@ public class Ball : MonoBehaviour {
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
             velocity = true;
-            bounceSound.PlayOneShot(BadPowerUpSound, volumeFX);
+            FXManager.instance.PlayPowerRed();
             portal.SendMessage("BonusScore", 400);
             Destroy(col.gameObject);
 
@@ -114,7 +113,7 @@ public class Ball : MonoBehaviour {
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
+            FXManager.instance.PlayPowerGreen();
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
@@ -125,7 +124,7 @@ public class Ball : MonoBehaviour {
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
+            FXManager.instance.PlayPowerGreen();
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
@@ -138,7 +137,7 @@ public class Ball : MonoBehaviour {
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
+            FXManager.instance.PlayPowerGreen();
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
@@ -150,7 +149,7 @@ public class Ball : MonoBehaviour {
             bigBall = true;
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(BadPowerUpSound, volumeFX);
+            FXManager.instance.PlayPowerRed();
             portal.SendMessage("BonusScore", 400);
             Destroy(col.gameObject);
         }
@@ -162,7 +161,7 @@ public class Ball : MonoBehaviour {
             BallSize = new Vector3(0.7f, 0.7f, 1.0f);
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            bounceSound.PlayOneShot(GoodPowerUpSound, volumeFX);
+            FXManager.instance.PlayPowerGreen();
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);            
         }

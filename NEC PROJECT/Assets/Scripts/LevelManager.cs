@@ -31,12 +31,6 @@ public class LevelManager : MonoBehaviour {
         PlayerPrefs.SetInt("NECSCENE", 1);
         world = 1;
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        
-	}
 
     void FixedUpdate()
     {
@@ -126,6 +120,7 @@ public class LevelManager : MonoBehaviour {
 
     void LoadMainMenu()
     {
+        FXManager.instance.PlayUIClickBack();
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -161,6 +156,7 @@ public class LevelManager : MonoBehaviour {
                 }
                 break;
         }
+        FXManager.instance.PlayUIClick();
     }
     void LoadLevel2()
     {
@@ -197,6 +193,7 @@ public class LevelManager : MonoBehaviour {
                 }
                 break;
         }
+        FXManager.instance.PlayUIClick();
     }
     void LoadLevel3()
     {
@@ -233,6 +230,7 @@ public class LevelManager : MonoBehaviour {
                 }
                 break;
         }
+        FXManager.instance.PlayUIClick();
     }
     void LoadLevel4()
     {
@@ -269,6 +267,7 @@ public class LevelManager : MonoBehaviour {
                 }
                 break;
         }
+        FXManager.instance.PlayUIClick();
     }
     void LoadLevel5()
     {
@@ -305,6 +304,7 @@ public class LevelManager : MonoBehaviour {
                 }
                 break;
         }
+        FXManager.instance.PlayUIClick();
     }
 
     void CheckLockedWorld1()

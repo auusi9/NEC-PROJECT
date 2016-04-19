@@ -13,12 +13,11 @@ public class MenuRotation : MonoBehaviour
     float currentAngle = 135;
     float baseAngle2;
     bool Sound;
-    public AudioClip OnClick;
-    private AudioSource MenuAudio;
+
 
     void Start()
     {
-        MenuAudio = GetComponent<AudioSource>();
+    
 
         Time.timeScale = 1.0f;
         if (firstTimeLoad)
@@ -33,37 +32,25 @@ public class MenuRotation : MonoBehaviour
 
     public void LoadPlayScene()
     {
+        FXManager.instance.PlayUIClick();
         SceneManager.LoadScene("LevelMenu");
     }
-
-    public void LoadAboutUsScene()
-    {
-        SceneManager.LoadScene("AboutUs");
-    }
-  
-   
-    public void OnStartGame()
-    {
-        //Debug.Log("You pressed play button!");
-        //Add load for new scene here.
-
-        
-        MenuAudio.PlayOneShot(OnClick,1);
-        LoadPlayScene();
-
-    }
+ 
     public void OnSettingsGame()
     {
         //Add load for new scene here.
+        FXManager.instance.PlayUIClick();
         SceneManager.LoadScene("Settings");
     }
     public void OnStatsGame()
     {
         Debug.Log("You pressed Stats button!");
+        FXManager.instance.PlayUIClick();
         SceneManager.LoadScene("StatsScene");
     }
     public void OnAboutGame()
     {
+        FXManager.instance.PlayUIClick();
         SceneManager.LoadScene("AboutUs");
     }
 
@@ -72,6 +59,7 @@ public class MenuRotation : MonoBehaviour
         if(GoTo == true)
         {
             GoToAngle();
+            
         }
     }
     public void DeleteData()

@@ -42,6 +42,7 @@ public class StatsManager : MonoBehaviour {
 
     void LoadMainMenu()
     {
+        FXManager.instance.PlayUIClickBack();
         SceneManager.LoadScene(0);
     }
     public void DeleteData()

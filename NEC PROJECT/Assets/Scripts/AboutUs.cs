@@ -38,6 +38,7 @@ public class AboutUs : MonoBehaviour {
 
     public void OnMainMenu()
     {
+        FXManager.instance.PlayUIClickBack();
         SceneManager.LoadScene("MainMenu");
     }
     void OnAboutUs()

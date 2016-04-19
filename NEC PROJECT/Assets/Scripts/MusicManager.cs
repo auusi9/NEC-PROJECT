@@ -32,7 +32,7 @@ public class MusicManager : MonoBehaviour {
 
         if (PlayerPrefs.HasKey("Music volume") == false)
         {
-            PlayerPrefs.SetFloat("Music volume", 1);
+            PlayerPrefs.SetFloat("Music volume",0.5f);
         }
 
         if (PlayerPrefs.HasKey("FX volume") == false)
