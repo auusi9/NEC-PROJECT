@@ -123,7 +123,13 @@ public class Portal : MonoBehaviour {
         PlayerPrefs.SetInt("TotalLevels", StatsManager.TotalLevels);
         PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
         PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
-        rect.GetComponent<FreezeRotation>().enabled = true;
+        //rect.GetComponent<FreezeRotation>().enabled = true;
+
+        foreach (GameObject r in GameObject.FindGameObjectsWithTag("Square"))
+        {
+            r.GetComponent<FreezeRotation>().enabled = true;
+        }
+        
         PlayerPrefs.SetInt(NextScene, 1);
         CalculateScore();
         Debug.Log(LevelScore);
