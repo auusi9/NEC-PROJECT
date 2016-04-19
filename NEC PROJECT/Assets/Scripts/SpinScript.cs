@@ -9,7 +9,7 @@ public class SpinScript : MonoBehaviour
     void Start()
     {
         iniRot = transform.rotation;
-
+        
     }
 
     void LateUpdate()
