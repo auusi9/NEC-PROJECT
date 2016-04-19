@@ -50,6 +50,7 @@ public class Ball : MonoBehaviour {
                 if ((Time.time - invencibility) > 0.25f && invulnerable == false)
                 {
                     FXManager.instance.PlayDie();
+                    speed = 0;
                     DieAnimation();
                 }
             }
