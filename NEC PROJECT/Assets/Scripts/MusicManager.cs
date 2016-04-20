@@ -7,6 +7,7 @@ public class MusicManager : MonoBehaviour {
 
     public AudioClip MenuMusic;
     public AudioClip GameplayMusic;
+    public AudioClip GameplayMusic2;
     public static MusicManager instance;
 
     int currentscene = 0;
@@ -39,6 +40,7 @@ public class MusicManager : MonoBehaviour {
         {
             PlayerPrefs.SetFloat("FX volume", 1);
         }
+
         if (PlayerPrefs.HasKey("Music volume"))
             GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music volume");
     }
@@ -60,6 +62,12 @@ public class MusicManager : MonoBehaviour {
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = GameplayMusic;
+                GetComponent<AudioSource>().Play();
+            }
+            else if(SceneManager.GetActiveScene().buildIndex >= 16 && currentscene <16)
+            {
+                GetComponent<AudioSource>().Stop();
+                GetComponent<AudioSource>().clip = GameplayMusic2;
                 GetComponent<AudioSource>().Play();
             }
            
