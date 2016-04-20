@@ -13,7 +13,6 @@ public class Portal : MonoBehaviour {
     int LevelScore;
     void Start()
     {
-        
         StatsManager.TotalAttempts++;
         PlayerPrefs.SetInt("TotalAttempts", StatsManager.TotalAttempts);
     }
