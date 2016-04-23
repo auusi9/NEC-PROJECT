@@ -10,6 +10,8 @@ public class StatsManager : MonoBehaviour {
     public static float TotalTime;
     public static int TotalScore;
     public static int TotalLevels;
+    public static int TotalFragments;
+
     int seconds;
     int minute;
     int hour;
@@ -27,10 +29,11 @@ public class StatsManager : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate ()
     {
-        totallevels.text = " " + TotalLevels;
+        totallevels.text = "" + TotalLevels;
         totalattempts.text = "" +TotalAttempts;
         totalrebounds.text = "" + TotalRebounds;
         totalscore.text = "" + TotalScore;
+
         seconds = Mathf.RoundToInt(TotalTime) % 60;
         minute = (Mathf.RoundToInt(TotalTime) / 60) % 60;
         hour = (Mathf.RoundToInt(TotalTime) / 3600) % 24;
@@ -56,13 +59,10 @@ public class StatsManager : MonoBehaviour {
     }
     void UnlockLevels()
     {
-
         for(int i = 2; i <= 25;i++)
         {
             PlayerPrefs.SetInt("NECSCENE" + i, 1);
-
         }
-
     }
 
 

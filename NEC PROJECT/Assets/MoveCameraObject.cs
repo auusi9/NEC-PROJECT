@@ -13,7 +13,7 @@ public class MoveCameraObject : MonoBehaviour {
 
         if(LevelManager.world != lastworld)
         {
-            if(lastworld == 5 && LevelManager.world == 1)
+            if(lastworld == 10 && LevelManager.world == 1)
             {
                 if (transform.position.x > 0f)
                 {
@@ -22,7 +22,7 @@ public class MoveCameraObject : MonoBehaviour {
                     lastworld = LevelManager.world;
                 }
             }
-            else if(lastworld == 1 && LevelManager.world == 5)
+            else if(lastworld == 1 && LevelManager.world == 10)
             {
                 if (transform.position.x < 0f)
                 {

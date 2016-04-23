@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class TouchInputHandler : MonoBehaviour
 {
@@ -114,5 +115,20 @@ public class TouchInputHandler : MonoBehaviour
             }
         }
 
+    }
+
+    void LateUpdate()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+
+                if (SceneManager.GetActiveScene().buildIndex > 0 && SceneManager.GetActiveScene().buildIndex < 6 && SceneManager.GetActiveScene().buildIndex >= 6)
+                {
+                    SceneManager.LoadScene(0);
+                }
+            }
+        }
     }
 }

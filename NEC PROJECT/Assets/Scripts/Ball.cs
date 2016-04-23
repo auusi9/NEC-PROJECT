@@ -11,6 +11,7 @@ public class Ball : MonoBehaviour {
     public Animator TouchUiAnimator;
     public Object ShieldBreak;
 
+
     float actual_time;
     float invencibility = 0.0f;
     float speed;
@@ -165,6 +166,15 @@ public class Ball : MonoBehaviour {
             FXManager.instance.PlayPowerGreen();
             portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);            
+        }
+        else if (col.gameObject.tag == "Fragment")
+        {
+            portal.SendMessage("FragmentDestroyed", col.gameObject);
+            for(int i  = 0; i< col.gameObject.transform.childCount; i++)
+            { 
+                Destroy(col.gameObject.transform.GetChild(i).gameObject);
+            }
+            col.gameObject.GetComponent<Animator>().SetBool("Die", true);
         }
     }
 

@@ -30,6 +30,7 @@ public class MusicManager : MonoBehaviour {
         StatsManager.TotalTime = PlayerPrefs.GetFloat("TotalTime");
         StatsManager.TotalScore = PlayerPrefs.GetInt("TotalScore");
         StatsManager.TotalLevels = PlayerPrefs.GetInt("TotalLevels");
+        StatsManager.TotalFragments = PlayerPrefs.GetInt("TotalFragments");
 
         if (PlayerPrefs.HasKey("Music volume") == false)
         {
@@ -58,19 +59,19 @@ public class MusicManager : MonoBehaviour {
                 GetComponent<AudioSource>().clip = MenuMusic;
                 GetComponent<AudioSource>().Play();
             }
+            else if (SceneManager.GetActiveScene().buildIndex >= 16 && currentscene < 16)
+            {
+                GetComponent<AudioSource>().Stop();
+                GetComponent<AudioSource>().clip = GameplayMusic2;
+                GetComponent<AudioSource>().Play();
+            }
             else if (SceneManager.GetActiveScene().buildIndex >= 6 && currentscene < 6)
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = GameplayMusic;
                 GetComponent<AudioSource>().Play();
             }
-            else if(SceneManager.GetActiveScene().buildIndex >= 16 && currentscene <16)
-            {
-                GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().clip = GameplayMusic2;
-                GetComponent<AudioSource>().Play();
-            }
-           
+             
             currentscene = SceneManager.GetActiveScene().buildIndex;
         }
     }

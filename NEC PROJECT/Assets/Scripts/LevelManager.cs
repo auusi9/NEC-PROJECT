@@ -8,11 +8,7 @@ using System.Collections;
 public class LevelManager : MonoBehaviour {
 
     public static int world;
-    public GameObject world1_button;
-    public GameObject world2_button;
-    public GameObject world3_button;
-    public GameObject world4_button;
-    public GameObject world5_button;
+    public Text WorldText;
 
     public GameObject locked1;
     public GameObject locked2;
@@ -37,33 +33,43 @@ public class LevelManager : MonoBehaviour {
         switch (world)
         {
             case 1:
-                world1_button.SetActive(true);
-                world2_button.SetActive(false);
-                world5_button.SetActive(false);
-                CheckLockedWorld1();
+                WorldText.text = "I";
+                 CheckLockedWorld1();
                 break;
             case 2:
-                world2_button.SetActive(true);
-                world3_button.SetActive(false);
-                world1_button.SetActive(false);
+                WorldText.text = "II";
                 CheckLockedWorld2();
                 break;
             case 3:
-                world3_button.SetActive(true);
-                world2_button.SetActive(false);
-                world4_button.SetActive(false);
+                WorldText.text = "III";
                 CheckLockedWorld3();
                 break;
             case 4:
-                world4_button.SetActive(true);
-                world3_button.SetActive(false);
-                world5_button.SetActive(false);
+                WorldText.text = "IV";
                 CheckLockedWorld4();
                 break;
             case 5:
-                world5_button.SetActive(true);
-                world1_button.SetActive(false);
-                world4_button.SetActive(false);
+                WorldText.text = "V";
+                CheckLockedWorld5();
+                break;
+            case 6:
+                WorldText.text = "VI";
+                CheckLockedWorld1();
+                break;
+            case 7:
+                WorldText.text = "VII";
+                CheckLockedWorld2();
+                break;
+            case 8:
+                WorldText.text = "VIII";
+                CheckLockedWorld3();
+                break;
+            case 9:
+                WorldText.text = "IX";
+                CheckLockedWorld4();
+                break;
+            case 10:
+                WorldText.text = "X";
                 CheckLockedWorld5();
                 break;
         }
@@ -74,9 +80,9 @@ public class LevelManager : MonoBehaviour {
     {
         int lastworld = world - 1;
         world++;
-        if (world == 6) world = 1;
+        if (world == 11) world = 1;
         MoveCamera.transform.position = new Vector3(-13.87f, 0);
-        MoveCamera.velocity = new Vector2(8.5f, 0);
+        MoveCamera.velocity = new Vector2(23.5f, 0);
         
         foreach(GameObject r in background)
         {
@@ -91,16 +97,14 @@ public class LevelManager : MonoBehaviour {
             }
             else r.SetActive(false);
         }
-        
-        
     }
     void ChangeWorldLeft()
     {
         int lastworld = world - 1;
         world--;
-        if (world == 0) world = 5;
+        if (world == 0) world = 10;
         MoveCamera.transform.position = new Vector3(13.87f, 0);
-        MoveCamera.velocity = new Vector2(-8.5f, 0);
+        MoveCamera.velocity = new Vector2(-23.5f, 0);
 
         foreach (GameObject r in background)
         {
@@ -115,7 +119,6 @@ public class LevelManager : MonoBehaviour {
             }
             else r.SetActive(false);
         }
-
     }
 
     void LoadMainMenu()
@@ -155,6 +158,36 @@ public class LevelManager : MonoBehaviour {
                     SceneManager.LoadScene("NECSCENE21");
                 }
                 break;
+            case 6:
+                if (PlayerPrefs.GetInt("NECSCENE26") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE26");
+                }
+                break;
+            case 7:
+                if (PlayerPrefs.GetInt("NECSCENE31") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE31");
+                }
+                break;
+            case 8:
+                if (PlayerPrefs.GetInt("NECSCENE36") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE36");
+                }
+                break;
+            case 9:
+                if (PlayerPrefs.GetInt("NECSCENE41") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE41");
+                }
+                break;
+            case 10:
+                if (PlayerPrefs.GetInt("NECSCENE46") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE46");
+                }
+                break;
         }
         FXManager.instance.PlayUIClick();
     }
@@ -190,6 +223,36 @@ public class LevelManager : MonoBehaviour {
                 if (PlayerPrefs.GetInt("NECSCENE22") == 1)
                 {
                     SceneManager.LoadScene("NECSCENE22");
+                }
+                break;
+            case 6:
+                if (PlayerPrefs.GetInt("NECSCENE27") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE27");
+                }
+                break;
+            case 7:
+                if (PlayerPrefs.GetInt("NECSCENE32") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE32");
+                }
+                break;
+            case 8:
+                if (PlayerPrefs.GetInt("NECSCENE37") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE37");
+                }
+                break;
+            case 9:
+                if (PlayerPrefs.GetInt("NECSCENE42") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE42");
+                }
+                break;
+            case 10:
+                if (PlayerPrefs.GetInt("NECSCENE47") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE47");
                 }
                 break;
         }
@@ -229,6 +292,36 @@ public class LevelManager : MonoBehaviour {
                     SceneManager.LoadScene("NECSCENE23");
                 }
                 break;
+            case 6:
+                if (PlayerPrefs.GetInt("NECSCENE28") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE28");
+                }
+                break;
+            case 7:
+                if (PlayerPrefs.GetInt("NECSCENE33") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE33");
+                }
+                break;
+            case 8:
+                if (PlayerPrefs.GetInt("NECSCENE38") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE38");
+                }
+                break;
+            case 9:
+                if (PlayerPrefs.GetInt("NECSCENE43") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE41");
+                }
+                break;
+            case 10:
+                if (PlayerPrefs.GetInt("NECSCENE48") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE48");
+                }
+                break;
         }
         FXManager.instance.PlayUIClick();
     }
@@ -266,6 +359,36 @@ public class LevelManager : MonoBehaviour {
                     SceneManager.LoadScene("NECSCENE24");
                 }
                 break;
+            case 6:
+                if (PlayerPrefs.GetInt("NECSCENE29") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE29");
+                }
+                break;
+            case 7:
+                if (PlayerPrefs.GetInt("NECSCENE34") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE34");
+                }
+                break;
+            case 8:
+                if (PlayerPrefs.GetInt("NECSCENE39") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE39");
+                }
+                break;
+            case 9:
+                if (PlayerPrefs.GetInt("NECSCENE44") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE44");
+                }
+                break;
+            case 10:
+                if (PlayerPrefs.GetInt("NECSCENE49") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE49");
+                }
+                break;
         }
         FXManager.instance.PlayUIClick();
     }
@@ -301,6 +424,36 @@ public class LevelManager : MonoBehaviour {
                 if (PlayerPrefs.GetInt("NECSCENE25") == 1)
                 {
                     SceneManager.LoadScene("NECSCENE25");
+                }
+                break;
+            case 6:
+                if (PlayerPrefs.GetInt("NECSCENE30") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE30");
+                }
+                break;
+            case 7:
+                if (PlayerPrefs.GetInt("NECSCENE35") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE35");
+                }
+                break;
+            case 8:
+                if (PlayerPrefs.GetInt("NECSCENE40") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE40");
+                }
+                break;
+            case 9:
+                if (PlayerPrefs.GetInt("NECSCENE45") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE45");
+                }
+                break;
+            case 10:
+                if (PlayerPrefs.GetInt("NECSCENE50") == 1)
+                {
+                    SceneManager.LoadScene("NECSCENE50");
                 }
                 break;
         }
@@ -451,5 +604,145 @@ public class LevelManager : MonoBehaviour {
         }
         else locked5.SetActive(true);
     }
+    void CheckLockedWorld6()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE26") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE27") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE28") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE29") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE30") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
 
+    void CheckLockedWorld7()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE31") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE32") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE33") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE34") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE35") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+    void CheckLockedWorld8()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE36") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE37") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE38") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE39") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE40") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+    void CheckLockedWorld9()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE41") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE42") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE43") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE44") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE45") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
+    void CheckLockedWorld10()
+    {
+        if (PlayerPrefs.GetInt("NECSCENE46") == 1)
+        {
+            locked1.SetActive(false);
+        }
+        else locked1.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE47") == 1)
+        {
+            locked2.SetActive(false);
+        }
+        else locked2.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE48") == 1)
+        {
+            locked3.SetActive(false);
+        }
+        else locked3.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE49") == 1)
+        {
+            locked4.SetActive(false);
+        }
+        else locked4.SetActive(true);
+        if (PlayerPrefs.GetInt("NECSCENE50") == 1)
+        {
+            locked5.SetActive(false);
+        }
+        else locked5.SetActive(true);
+    }
 }

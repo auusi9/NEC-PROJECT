@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -10,9 +11,23 @@ public class Portal : MonoBehaviour {
     public GameObject rect;
     public GameObject Complete;
     public Text Score;
+    public GameObject[] fragments;
     int LevelScore;
+
     void Start()
     {
+        int i = 0;
+        foreach(GameObject r in GameObject.FindGameObjectsWithTag("Fragment"))
+        {
+        
+           if(PlayerPrefs.GetInt(CurrentScene+"Fragment"+i)==1)
+            {
+                fragments[i] = r;
+                fragments[i].SetActive(false); 
+            }
+            i++;
+        }
+
         StatsManager.TotalAttempts++;
         PlayerPrefs.SetInt("TotalAttempts", StatsManager.TotalAttempts);
     }
@@ -21,6 +36,10 @@ public class Portal : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            foreach (GameObject r in GameObject.FindGameObjectsWithTag("Square"))
+            {
+                r.GetComponent<FreezeRotation>().enabled = true;
+            }
             Invoke("FinishLevel", 0.7f);
             Invoke("LoadComplete", 1.7f);
             Invoke("LoadNextLevel", 3.0f);
@@ -124,14 +143,25 @@ public class Portal : MonoBehaviour {
         PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
         //rect.GetComponent<FreezeRotation>().enabled = true;
 
-        foreach (GameObject r in GameObject.FindGameObjectsWithTag("Square"))
-        {
-            r.GetComponent<FreezeRotation>().enabled = true;
-        }
-        
+       
+
+
         PlayerPrefs.SetInt(NextScene, 1);
         CalculateScore();
         Debug.Log(LevelScore);
 
     }
+
+    public void FragmentDestroyed (GameObject fragment)
+    {
+        for (int i = 0; i < fragments.Length; i++)
+        {  
+           if (fragment == fragments[i])
+              PlayerPrefs.SetInt(CurrentScene + "Fragment" + i, 1); 
+        }
+
+        StatsManager.TotalFragments++;
+        PlayerPrefs.SetInt("TotalFragments", StatsManager.TotalFragments);
+    }
+
 }
