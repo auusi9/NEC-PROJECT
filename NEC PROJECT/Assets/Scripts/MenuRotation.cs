@@ -14,7 +14,9 @@ public class MenuRotation : MonoBehaviour
     float baseAngle2;
     bool Sound;
 
-
+    private Sprite going_up;
+    public Sprite going_down;
+    Animator goingUp;
 
 
     void Start()
@@ -28,6 +30,9 @@ public class MenuRotation : MonoBehaviour
             GoTo = true;
             firstTimeLoad = false;
         }
+
+        goingUp = GameObject.Find("Skins").GetComponent<Animator>();
+        going_up = goingUp.gameObject.GetComponent<Image>().sprite;
     }
 
     public void LoadPlayScene()
@@ -55,14 +60,16 @@ public class MenuRotation : MonoBehaviour
 
     public void OpenPopUp()
     {
-        Animator goingUp = GameObject.Find("Skins").GetComponent<Animator>();
+        
           if(goingUp.GetBool("Animated") == false)
           {
               goingUp.SetBool("Animated", true);
+              goingUp.gameObject.GetComponent<Image>().sprite = going_down;
           }
           else
           {
               goingUp.SetBool("Animated", false);
+              goingUp.gameObject.GetComponent<Image>().sprite = going_up;
           }
     }
 

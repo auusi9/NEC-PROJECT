@@ -9,10 +9,8 @@ public class MenuBall : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        GameObject spritemanager = GameObject.Find("SpriteChanger");
-        spritemanager.SendMessage("LoadSpriteMenu", gameObject);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .7f);
-       ball.AddForce(new Vector3(80.0f , 0.0f, 0.0f));
+        ball.AddForce(new Vector3(80.0f , 0.0f, 0.0f));
      
         
     }
@@ -26,6 +24,13 @@ public class MenuBall : MonoBehaviour {
             
         
     }
+
+    void FixedUpdate()
+    {
+        GameObject spritemanager = GameObject.Find("SpriteChanger");
+        spritemanager.SendMessage("LoadSpriteMenu", gameObject);
+    }
+
     // Update is called once per frame
     void Update () {
 

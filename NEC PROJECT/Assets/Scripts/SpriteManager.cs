@@ -54,7 +54,7 @@ public class SpriteManager : MonoBehaviour {
     {
         r.GetComponent<SpriteRenderer>().sprite = CurrentSprite;
     }
-    void ChangeSprite(int spriteind)
+    public void ChangeSprite(int spriteind)
     {
         switch (spriteind)
         {
