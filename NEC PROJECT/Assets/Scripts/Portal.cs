@@ -11,7 +11,7 @@ public class Portal : MonoBehaviour {
     public GameObject rect;
     public GameObject Complete;
     public Text Score;
-    public GameObject[] fragments;
+    GameObject[] fragments;
     int LevelScore;
 
     void Start()
@@ -27,8 +27,10 @@ public class Portal : MonoBehaviour {
             }
             i++;
         }
+        if (PlayerPrefs.HasKey(CurrentScene + "touches") == false)
+            PlayerPrefs.SetInt(CurrentScene + "touches", 1000000);
 
-        StatsManager.TotalAttempts++;
+        PlayerPrefs.SetInt(CurrentScene + "attempts", PlayerPrefs.GetInt(CurrentScene + "attempts")+1);
         PlayerPrefs.SetInt("TotalAttempts", StatsManager.TotalAttempts);
     }
 
@@ -141,9 +143,9 @@ public class Portal : MonoBehaviour {
         PlayerPrefs.SetInt("TotalLevels", StatsManager.TotalLevels);
         PlayerPrefs.SetFloat("TotalTime", StatsManager.TotalTime);
         PlayerPrefs.SetInt("TotalRebounds", StatsManager.TotalRebounds);
+        if(PlayerPrefs.GetInt(CurrentScene + "touches") > TouchesScript.touches)
+            PlayerPrefs.SetInt(CurrentScene + "touches", TouchesScript.touches);
         //rect.GetComponent<FreezeRotation>().enabled = true;
-
-       
 
 
         PlayerPrefs.SetInt(NextScene, 1);
