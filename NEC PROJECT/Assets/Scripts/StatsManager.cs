@@ -20,11 +20,7 @@ public class StatsManager : MonoBehaviour {
     public Text totaltime;
     public Text totalscore;
     public Text totallevels;
-    // Use this for initialization
-    void Start ()
-    {
-	
-	}
+
 	
 	// Update is called once per frame
 	void LateUpdate ()
@@ -46,8 +42,9 @@ public class StatsManager : MonoBehaviour {
     void LoadMainMenu()
     {
         FXManager.instance.PlayUIClickBack();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MenuStats");
     }
+
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
@@ -57,9 +54,10 @@ public class StatsManager : MonoBehaviour {
         TotalScore = 0;
         TotalLevels = 0;
     }
+
     void UnlockLevels()
     {
-        for(int i = 2; i <= 25;i++)
+        for(int i = 2; i <= 50;i++)
         {
             PlayerPrefs.SetInt("NECSCENE" + i, 1);
         }

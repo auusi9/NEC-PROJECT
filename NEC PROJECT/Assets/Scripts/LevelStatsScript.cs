@@ -86,14 +86,24 @@ public class LevelStatsScript : MonoBehaviour {
             score.text = "" + PlayerPrefs.GetInt("NECSCENE" + "Score");
         else
             score.text = "" + PlayerPrefs.GetInt("NECSCENE" + currentlevel + "Score");
-        if (PlayerPrefs.GetInt("NECSCENE" + currentlevel + "touches") == 1000000 || PlayerPrefs.GetInt("NECSCENE" + currentlevel + "attempts") == 0)
-            rebounds.text = "-";
-        else
+
+       
+      
         { 
         if (currentlevel == 1)
-            rebounds.text = "" + PlayerPrefs.GetInt("NECSCENE" + "touches");
+        {
+                if (PlayerPrefs.GetInt("NECSCENE" + "touches") == 1000000)
+                    rebounds.text = "-";
+                else
+                   rebounds.text = "" + PlayerPrefs.GetInt("NECSCENE" + "touches");
+        }
         else
-            rebounds.text = "" + PlayerPrefs.GetInt("NECSCENE" + currentlevel + "touches");
+        { 
+            if (PlayerPrefs.GetInt("NECSCENE" + currentlevel + "touches") == 1000000 || PlayerPrefs.GetInt("NECSCENE" + currentlevel + "attempts") == 0)
+                rebounds.text = "-";
+            else
+                rebounds.text = "" + PlayerPrefs.GetInt("NECSCENE" + currentlevel + "touches");
+        }
         }
         if (currentlevel == 1)
             attempts.text = "" + PlayerPrefs.GetInt("NECSCENE" + "attempts");
@@ -104,6 +114,7 @@ public class LevelStatsScript : MonoBehaviour {
 
     void StatsScene()
     {
-        SceneManager.LoadScene("StatsScene");
+        FXManager.instance.PlayUIClickBack();
+        SceneManager.LoadScene("MenuStats");
     }
 }
