@@ -31,11 +31,12 @@ public class Ball : MonoBehaviour {
     public GameObject trail;
     public GameObject portal;
     
-
     // Use this for initialization
     void Start ()
     {
-     
+        GameObject spritemanager = GameObject.Find("SpriteChanger");
+        spritemanager.SendMessage("LoadSprite", this.gameObject);
+       
         ball.AddForce(new Vector3(80.0f * initialSpeed.x, 80.0f * initialSpeed.y, 0.0f));
         speed = 5.0f;
         anim = GetComponent<Animator>(); 

@@ -7,9 +7,13 @@ public class MenuBall : MonoBehaviour {
     public GameObject TouchAnim;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        GameObject spritemanager = GameObject.Find("SpriteChanger");
+        spritemanager.SendMessage("LoadSpriteMenu", gameObject);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .7f);
        ball.AddForce(new Vector3(80.0f , 0.0f, 0.0f));
+     
         
     }
     void OnCollisionEnter2D(Collision2D col)

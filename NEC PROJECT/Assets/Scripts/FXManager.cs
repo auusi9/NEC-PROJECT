@@ -25,8 +25,6 @@ public class FXManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
-        
     }
 
     void Start()
