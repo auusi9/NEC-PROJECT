@@ -15,10 +15,10 @@ public class MenuRotation : MonoBehaviour
     bool Sound;
 
 
+
+
     void Start()
     {
-    
-
         Time.timeScale = 1.0f;
         if (firstTimeLoad)
         {
@@ -44,14 +44,26 @@ public class MenuRotation : MonoBehaviour
     }
     public void OnStatsGame()
     {
-        Debug.Log("You pressed Stats button!");
         FXManager.instance.PlayUIClick();
-        SceneManager.LoadScene("StatsScene");
+        SceneManager.LoadScene("MenuStats");
     }
     public void OnAboutGame()
     {
         FXManager.instance.PlayUIClick();
         SceneManager.LoadScene("AboutUs");
+    }
+
+    public void OpenPopUp()
+    {
+        Animator goingUp = GameObject.Find("Skins").GetComponent<Animator>();
+          if(goingUp.GetBool("Animated") == false)
+          {
+              goingUp.SetBool("Animated", true);
+          }
+          else
+          {
+              goingUp.SetBool("Animated", false);
+          }
     }
 
     void Update()

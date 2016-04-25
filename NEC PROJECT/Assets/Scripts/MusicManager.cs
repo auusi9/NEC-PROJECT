@@ -53,19 +53,19 @@ public class MusicManager : MonoBehaviour {
 
         if (SceneManager.GetActiveScene().buildIndex != currentscene)
         {
-            if (SceneManager.GetActiveScene().buildIndex < 6 && currentscene >= 6)
+            if (SceneManager.GetActiveScene().buildIndex < 8 && currentscene >= 8)
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = MenuMusic;
                 GetComponent<AudioSource>().Play();
             }
-            else if (SceneManager.GetActiveScene().buildIndex >= 16 && currentscene < 16)
+            else if (SceneManager.GetActiveScene().buildIndex >= 18 && currentscene < 18)
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = GameplayMusic2;
                 GetComponent<AudioSource>().Play();
             }
-            else if (SceneManager.GetActiveScene().buildIndex >= 6 && currentscene < 6)
+            else if (SceneManager.GetActiveScene().buildIndex >= 8 && currentscene < 8)
             {
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().clip = GameplayMusic;
