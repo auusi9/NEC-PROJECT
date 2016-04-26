@@ -9,6 +9,7 @@ public class StartMenu : MonoBehaviour {
 
     public GameObject PauseSystem;
     public GameObject TryAgain;
+    public GameObject MenuButton;
     public static StartMenu menu;
     string mainMenu = "Menu";
 
@@ -25,6 +26,7 @@ public class StartMenu : MonoBehaviour {
             menu = this;
             DontDestroyOnLoad(menu);
             TryAgain.SetActive(true);
+            MenuButton.SetActive(true);
             
             
         }
@@ -44,6 +46,18 @@ public class StartMenu : MonoBehaviour {
         PauseSystem.SetActive(true);
      
 
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Invoke("DestroyMenu", 0.02f);
+    }
+
+    void DestroyMenu()
+    {
+        Time.timeScale = 1f;
+        Destroy(this.gameObject);
     }
 
     public void LevelSelect()

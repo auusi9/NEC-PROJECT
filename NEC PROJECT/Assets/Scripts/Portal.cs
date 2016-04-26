@@ -42,9 +42,10 @@ public class Portal : MonoBehaviour {
             {
                 r.GetComponent<FreezeRotation>().enabled = true;
             }
+            
             Invoke("FinishLevel", 0.7f);
             Invoke("LoadComplete", 1.7f);
-            Invoke("LoadNextLevel", 3.0f);
+            //Invoke("LoadNextLevel", 3.0f);
             
            
             if(StartMenu.menu != null)
@@ -72,10 +73,23 @@ public class Portal : MonoBehaviour {
         SceneManager.LoadScene(NextScene);
     }
 
+    void TryAgain()
+    {
+        TouchesScript.touches = 0;
+        SceneManager.LoadScene(CurrentScene);
+    }
+
+    void MainMenu()
+    {
+        TouchesScript.touches = 0;
+        SceneManager.LoadScene("MainMenu");
+    }
+
     void LoadComplete()
     {
         Complete.SetActive(true);
     }
+
     void CalculateScore()
     {
         int penalization = 50;
