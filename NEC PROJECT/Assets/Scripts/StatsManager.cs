@@ -61,6 +61,11 @@ public class StatsManager : MonoBehaviour {
         {
             PlayerPrefs.SetInt("NECSCENE" + i, 1);
         }
+        for (int i = 1; i <= 5; i++)
+        {
+            PlayerPrefs.SetInt("Skin" + i, 1);
+        }
+
     }
 
 
