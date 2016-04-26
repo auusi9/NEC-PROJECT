@@ -43,15 +43,24 @@ public class LevelStatsScript : MonoBehaviour {
     public void ChangeLevelLeft()
     {
         level--;
-        if (level == 0) level = 5;
-        currentlevel = 5 * (world - 1) + level;
+        if (level == 0)
+        {
+            level = 5;
+            ChangeWorldLeft();
+        }
+            currentlevel = 5 * (world - 1) + level;
+        
         ChangeLabels();
     }
 
     public void ChangeLevelRight()
     {
         level++;
-        if (level == 5) level = 1;
+        if (level == 6)
+        {
+            level = 1;
+            ChangeWorldRight();
+        }
         currentlevel = 5 * (world - 1) + level;
         ChangeLabels();
     }

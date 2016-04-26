@@ -13,7 +13,7 @@ public class MenuRotation : MonoBehaviour
     float currentAngle = 135;
     float baseAngle2;
     bool Sound;
-    
+    public Text fragmentstext;
     private Sprite going_up;
     public Sprite going_down;
     Animator goingUp;
@@ -29,7 +29,6 @@ public class MenuRotation : MonoBehaviour
             GoTo = true;
             firstTimeLoad = false;
         }
-        StatsManager.TotalFragments = 50;
         goingUp = GameObject.Find("Skins").GetComponent<Animator>();
         going_up = goingUp.gameObject.GetComponent<Image>().sprite;
     }
@@ -79,7 +78,7 @@ public class MenuRotation : MonoBehaviour
             GoToAngle();
             
         }
-        
+        fragmentstext.text = "" + StatsManager.TotalFragments;
     }
     
    

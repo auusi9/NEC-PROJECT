@@ -13,20 +13,28 @@ public class Portal : MonoBehaviour {
     public Text Score;
     GameObject[] fragments;
     int LevelScore;
+    int[] ifragment = null;
 
+    void Awake()
+    {
+        
+        fragments = GameObject.FindGameObjectsWithTag("Fragment");
+        ifragment = new int[fragments.Length];
+        for (int i = 0; i < fragments.Length ;i++)
+        {
+            ifragment[i] = 0;
+            if (PlayerPrefs.GetInt(CurrentScene + "Fragment" + i) == 1)
+            {
+                fragments[i].SetActive(false);
+            }
+            
+        }
+
+    }
     void Start()
     {
-        int i = 0;
-        foreach(GameObject r in GameObject.FindGameObjectsWithTag("Fragment"))
-        {
-        
-           if(PlayerPrefs.GetInt(CurrentScene+"Fragment"+i)==1)
-            {
-                fragments[i] = r;
-                fragments[i].SetActive(false); 
-            }
-            i++;
-        }
+     
+
         if (PlayerPrefs.HasKey(CurrentScene + "touches") == false)
             PlayerPrefs.SetInt(CurrentScene + "touches", 1000000);
 
@@ -161,6 +169,16 @@ public class Portal : MonoBehaviour {
             PlayerPrefs.SetInt(CurrentScene + "touches", TouchesScript.touches);
         //rect.GetComponent<FreezeRotation>().enabled = true;
 
+        for(int i= 0; i< fragments.Length;i++)
+        {
+            if(ifragment[i] ==1)
+            {
+                PlayerPrefs.SetInt(CurrentScene + "Fragment" + i, 1);
+                StatsManager.TotalFragments++;
+                PlayerPrefs.SetInt("TotalFragments", StatsManager.TotalFragments);
+            }
+        }
+
 
         PlayerPrefs.SetInt(NextScene, 1);
         CalculateScore();
@@ -171,13 +189,9 @@ public class Portal : MonoBehaviour {
     public void FragmentDestroyed (GameObject fragment)
     {
         for (int i = 0; i < fragments.Length; i++)
-        {  
-           if (fragment == fragments[i])
-              PlayerPrefs.SetInt(CurrentScene + "Fragment" + i, 1); 
-        }
-
-        StatsManager.TotalFragments++;
-        PlayerPrefs.SetInt("TotalFragments", StatsManager.TotalFragments);
+        {
+            if (fragment == fragments[i])
+                ifragment[i] = 1;
+        }  
     }
-
 }
