@@ -90,7 +90,7 @@ public class Portal : MonoBehaviour {
     void MainMenu()
     {
         TouchesScript.touches = 0;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("LevelMenu");
     }
 
     void LoadComplete()

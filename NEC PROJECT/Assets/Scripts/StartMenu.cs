@@ -50,7 +50,7 @@ public class StartMenu : MonoBehaviour {
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("LevelMenu");
         Invoke("DestroyMenu", 0.02f);
     }
 
