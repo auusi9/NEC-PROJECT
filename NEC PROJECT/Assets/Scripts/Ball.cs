@@ -98,74 +98,60 @@ public class Ball : MonoBehaviour {
             FXManager.instance.PlayWin();
             portal = col.gameObject;
         }
-        else if (col.gameObject.tag == "SpeedUpPowerUp")
+        else if(col.gameObject.tag == "Random")
         {
-            actual_time = Time.time;
-            speed = 10.0f;
+            TakePowerUp(Mathf.RoundToInt(Random.Range(0, 5)));
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            velocity = true;
-            FXManager.instance.PlayPowerRed();
-            portal.SendMessage("BonusScore", 400);
             Destroy(col.gameObject);
-
+        }
+        else if (col.gameObject.tag == "SpeedUpPowerUp")
+        {
+            TakePowerUp(0);
+            Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
+            parent.SetBool("Die", true);
+            Destroy(col.gameObject);
         }
         else if (col.gameObject.tag == "ShieldPowerUp")
         {
-            shield = true;
-
+            TakePowerUp(1);
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            FXManager.instance.PlayPowerGreen();
-            portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
 
         else if (col.gameObject.tag == "DoubleBallPowerUp")
         {
-            doubleBall = true;
-
+            TakePowerUp(2);
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            FXManager.instance.PlayPowerGreen();
-            portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
 
         else if (col.gameObject.tag == "SpeedDownPowerUp")
         {
-            speed = 2.0f;
-            actual_time = Time.time;
-            velocityDown = true;
+            TakePowerUp(3);
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            FXManager.instance.PlayPowerGreen();
-            portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);
         }
 
         else if (col.gameObject.tag == "BiggerPowerUp")
         {
-            actual_time = Time.time;
-            BallSize = new Vector3(1.3f, 1.3f, 1.0f);
-            bigBall = true;
+            TakePowerUp(4);
+
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
             FXManager.instance.PlayPowerRed();
-            portal.SendMessage("BonusScore", 400);
             Destroy(col.gameObject);
         }
 
         else if (col.gameObject.tag == "SmallerPowerUp")
         {
-            actual_time = Time.time;
-            smallBall = true;
-            BallSize = new Vector3(0.7f, 0.7f, 1.0f);
+            TakePowerUp(5);
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            FXManager.instance.PlayPowerGreen();
-            portal.SendMessage("BonusScore", -400);
             Destroy(col.gameObject);            
         }
         else if (col.gameObject.tag == "Fragment")
@@ -297,4 +283,49 @@ public class Ball : MonoBehaviour {
         velocityDown = false;
     }
 
+    void TakePowerUp(int id)
+    {
+        switch(id)
+        {
+            case 0:
+                velocity = true;
+                actual_time = Time.time;
+                speed = 10.0f;
+                portal.SendMessage("BonusScore", 400);
+                FXManager.instance.PlayPowerRed();
+                break;
+
+            case 1:
+                shield = true;
+                FXManager.instance.PlayPowerGreen();
+                portal.SendMessage("BonusScore", -400);
+                break;
+            case 2:
+                doubleBall = true;
+                portal.SendMessage("BonusScore", -400);
+                FXManager.instance.PlayPowerGreen();
+                break;
+            case 3:
+                speed = 2.0f;
+                actual_time = Time.time;
+                velocityDown = true;
+                portal.SendMessage("BonusScore", -400);
+                FXManager.instance.PlayPowerGreen();
+                break;
+            case 4:
+                actual_time = Time.time;
+                BallSize = new Vector3(1.3f, 1.3f, 1.0f);
+                bigBall = true;
+                portal.SendMessage("BonusScore", 400);
+                FXManager.instance.PlayPowerRed();
+                break;
+            case 5:
+                actual_time = Time.time;
+                smallBall = true;
+                BallSize = new Vector3(0.7f, 0.7f, 1.0f);
+                portal.SendMessage("BonusScore", -400);
+                FXManager.instance.PlayPowerGreen();
+                break;
+        }
+    }
 }
