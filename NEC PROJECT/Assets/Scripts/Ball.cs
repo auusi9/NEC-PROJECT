@@ -59,9 +59,10 @@ public class Ball : MonoBehaviour {
             else
             { 
                 shield = false;
-                anim.SetBool("Shield", false);
+                anim.SetBool("Shield", false);        
                 Instantiate(ShieldBreak,transform.position, transform.rotation);
                 invencibility = Time.time;
+                GetComponent<SpriteRenderer>().sprite = transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
             }
         }
         else if (col.gameObject.tag == "Player") return;
@@ -180,6 +181,7 @@ public class Ball : MonoBehaviour {
             clone.GetComponentsfrom(this);
             doubleBall = false;
         }
+
         //ShieldAnimation
         if (shield == true)
         {
