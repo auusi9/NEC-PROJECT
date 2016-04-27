@@ -62,8 +62,9 @@ public class Ball : MonoBehaviour {
                 anim.SetBool("Shield", false);        
                 Instantiate(ShieldBreak,transform.position, transform.rotation);
                 invencibility = Time.time;
-                GetComponent<SpriteRenderer>().sprite = transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
+               
             }
+            GetComponent<SpriteRenderer>().sprite = null;
         }
         else if (col.gameObject.tag == "Player") return;
         else
@@ -261,7 +262,6 @@ public class Ball : MonoBehaviour {
         speed = clone.speed;
         velocity = clone.velocity;
         shield = clone.shield;
-        //doubleBall = clone.doubleBall;
         velocityDown = clone.velocityDown;
         bigBall = clone.bigBall;
         smallBall = clone.smallBall;
@@ -270,6 +270,7 @@ public class Ball : MonoBehaviour {
 
     void DieAnimation()
     {
+        GetComponent<FreezeRotation>().enabled = true;
             anim.SetBool("Die", true);
             ball.velocity = Vector3.zero;
             Destroy(ChildSprite);

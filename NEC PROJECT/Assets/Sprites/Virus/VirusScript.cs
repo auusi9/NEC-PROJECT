@@ -3,38 +3,37 @@ using System.Collections;
 
 public class VirusScript : MonoBehaviour {
     int lasttouch = 0;
-    Transform ChildwithCHilds;
     int touchstartchild = 0;
-    // Use this for initialization
-    void Start ()
+    public GameObject Son;
+    
+    void OnEnable()
     {
-        ChildwithCHilds = transform.FindChild("VirusSecondHalf"); ;
+        touchstartchild = TouchesScript.touches;
+        Debug.Log("IM HERE");
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-	if(lasttouch != TouchesScript.touches)
+
+	if(lasttouch != (TouchesScript.touches - touchstartchild))
         {
             if (transform.childCount > lasttouch)
             { 
                 transform.GetChild(lasttouch).gameObject.SetActive(true);
                 if(lasttouch != 0 && transform.childCount > lasttouch +1)
                 transform.GetChild(lasttouch-1).gameObject.SetActive(false);
-                touchstartchild = lasttouch;
+               
             }
             else
-            { 
-                if (ChildwithCHilds.transform.childCount > (lasttouch-1 - touchstartchild) )
-                {
-                    ChildwithCHilds.GetChild(lasttouch-1 - touchstartchild).gameObject.SetActive(true);
-                    if (lasttouch-1 - touchstartchild != 0)
-                        ChildwithCHilds.transform.GetChild(lasttouch-2 - touchstartchild).gameObject.SetActive(false);
-                }
+            {
+                if(Son != null)
+                       Son.SetActive(true);
                 
             }
             
         }
-        lasttouch = TouchesScript.touches;
+
+        lasttouch = (TouchesScript.touches - touchstartchild);
     }
 }
