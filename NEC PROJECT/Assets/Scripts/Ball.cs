@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour {
     public Animator TouchUiAnimator;
     public Object ShieldBreak;
 
-
+    float blinktime;
     float actual_time;
     float invencibility = 0.0f;
     float speed;
@@ -23,6 +23,7 @@ public class Ball : MonoBehaviour {
     bool smallBall;
     bool Die;
     bool endrotation;
+    bool Invisible;
     bool invulnerable;
     public float time;
     public Vector3 initialSpeed;
@@ -30,13 +31,15 @@ public class Ball : MonoBehaviour {
     Animator anim;
     public GameObject trail;
     public GameObject portal;
-    
+    Color InvisibleColor;
+    bool blink;
     // Use this for initialization
     void Start ()
     {
         GameObject spritemanager = GameObject.Find("SpriteChanger");
         spritemanager.SendMessage("LoadSprite", this.gameObject);
-       
+
+        InvisibleColor =  new Color(1f, 1f, 1f, 1f);
         ball.AddForce(new Vector3(80.0f * initialSpeed.x, 80.0f * initialSpeed.y, 0.0f));
         speed = 5.0f;
         anim = GetComponent<Animator>(); 
@@ -96,13 +99,14 @@ public class Ball : MonoBehaviour {
             DeactivatePowerUps();
             ball.transform.SetParent(col.gameObject.transform);
             trail.SetActive(false);
+            Invisible = false;
             endrotation = true;
             FXManager.instance.PlayWin();
             portal = col.gameObject;
         }
         else if(col.gameObject.tag == "Random")
         {
-            TakePowerUp(Mathf.RoundToInt(Random.Range(0, 5)));
+            TakePowerUp(Mathf.RoundToInt(Random.Range(0,6.5f)));
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
             Destroy(col.gameObject);
@@ -156,6 +160,13 @@ public class Ball : MonoBehaviour {
             parent.SetBool("Die", true);
             Destroy(col.gameObject);            
         }
+        else if (col.gameObject.tag == "Invisible")
+        {
+            TakePowerUp(6);
+            Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
+            parent.SetBool("Die", true);
+            Destroy(col.gameObject);
+        }
         else if (col.gameObject.tag == "Fragment")
         {
             portal.SendMessage("FragmentDestroyed", col.gameObject);
@@ -173,7 +184,7 @@ public class Ball : MonoBehaviour {
         ball.velocity = ball.velocity.normalized * speed;
     }
     // Update is called once per frame
-    void LateUpdate ()
+    void FixedUpdate ()
     {  
         if(doubleBall == true)
         {
@@ -201,6 +212,37 @@ public class Ball : MonoBehaviour {
             }
         }
        
+        if(Invisible == true)
+        {
+            if(blink)
+            {
+                transform.GetChild(1).GetComponent<SpriteRenderer>().color = InvisibleColor;
+                InvisibleColor = new Color(1f, 1f, 1f, 1f);
+                if ((Time.time - blinktime) > 0.1f)
+                {
+                    blink = false;
+                    blinktime = Time.time;
+                }
+                    
+            }
+            else
+            {
+                transform.GetChild(1).GetComponent<SpriteRenderer>().color = InvisibleColor;
+                InvisibleColor = new Color(1f, 1f, 1f, 0f);
+                if ((Time.time - blinktime) > 0.3f)
+                {
+                    blink = true;
+                    blinktime = Time.time;
+                }
+            }
+
+            if ((Time.time - actual_time) > time+2)
+            {
+                Invisible = false;
+                InvisibleColor = new Color(1f, 1f, 1f, 1f);
+                transform.GetChild(1).GetComponent<SpriteRenderer>().color = InvisibleColor;
+            }
+        }
         //Speed Down PowerUp
         if (velocityDown == true)
         {
@@ -328,6 +370,14 @@ public class Ball : MonoBehaviour {
                 BallSize = new Vector3(0.7f, 0.7f, 1.0f);
                 portal.SendMessage("BonusScore", -400);
                 FXManager.instance.PlayPowerGreen();
+                break;
+            case 6:
+                actual_time = Time.time;
+                Invisible = true;
+                InvisibleColor = new Color(1f, 1f, 1f, 0f);
+                transform.GetChild(1).GetComponent<SpriteRenderer>().color = InvisibleColor;
+                portal.SendMessage("BonusScore", 400);
+                FXManager.instance.PlayPowerRed();
                 break;
         }
     }

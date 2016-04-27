@@ -28,7 +28,7 @@ public class StatsManager : MonoBehaviour {
         totallevels.text = "" + TotalLevels;
         totalattempts.text = "" +TotalAttempts;
         totalrebounds.text = "" + TotalRebounds;
-        totalscore.text = "" + TotalScore;
+        totalscore.text = "" + PlayerPrefs.GetInt("TotalScore");
 
         seconds = Mathf.RoundToInt(TotalTime) % 60;
         minute = (Mathf.RoundToInt(TotalTime) / 60) % 60;
