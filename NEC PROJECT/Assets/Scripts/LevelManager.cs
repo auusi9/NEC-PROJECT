@@ -53,23 +53,23 @@ public class LevelManager : MonoBehaviour {
                 break;
             case 6:
                 WorldText.text = "VI";
-                CheckLockedWorld1();
+                CheckLockedWorld6();
                 break;
             case 7:
                 WorldText.text = "VII";
-                CheckLockedWorld2();
+                CheckLockedWorld7();
                 break;
             case 8:
                 WorldText.text = "VIII";
-                CheckLockedWorld3();
+                CheckLockedWorld8();
                 break;
             case 9:
                 WorldText.text = "IX";
-                CheckLockedWorld4();
+                CheckLockedWorld9();
                 break;
             case 10:
                 WorldText.text = "X";
-                CheckLockedWorld5();
+                CheckLockedWorld10();
                 break;
         }
 

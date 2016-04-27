@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class TouchInputHandler : MonoBehaviour
 {
@@ -33,7 +34,12 @@ public class TouchInputHandler : MonoBehaviour
             touchesOld = new GameObject[touchList.Count];
             touchList.CopyTo(touchesOld);
             touchList.Clear();
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
 
+                // at least on touch is over a canvas UI
+                return;
+            }
             hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), -Vector2.up, 0, touchInputMask);
             GameObject recipient;
             
@@ -79,6 +85,14 @@ public class TouchInputHandler : MonoBehaviour
             for (int i = 0; i < Input.touchCount; ++i)
             {
                 Touch touch = Input.GetTouch(i);
+                
+                if (EventSystem.current.IsPointerOverGameObject(i))
+                {
+                    
+                    // at least on touch is over a canvas UI
+                    return;
+                }
+
                 hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y)), -Vector2.up, 0 , touchInputMask);
                 if (hit.collider != null)
                 {
