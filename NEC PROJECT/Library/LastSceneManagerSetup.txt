@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/World1/NECSCENE.unity
+- path: Assets/Scene/World6/NECSCENE26.unity
   isLoaded: 1
   isActive: 1
