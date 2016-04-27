@@ -101,6 +101,8 @@ public class Ball : MonoBehaviour {
             ball.transform.SetParent(col.gameObject.transform);
             trail.SetActive(false);
             Invisible = false;
+            InvisibleColor = new Color(1f, 1f, 1f, 1f);
+            transform.GetChild(1).GetComponent<SpriteRenderer>().color = InvisibleColor;
             endrotation = true;
             FXManager.instance.PlayWin();
             portal = col.gameObject;

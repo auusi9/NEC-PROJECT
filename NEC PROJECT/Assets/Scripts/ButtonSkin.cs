@@ -65,6 +65,7 @@ public class ButtonSkin : MonoBehaviour {
                 
                 PlayerPrefs.SetInt("Skin" + SkinId, 1);
                 StatsManager.TotalFragments -= price;
+                PlayerPrefs.SetInt("TotalFragments", StatsManager.TotalFragments);
               
                     CurrentSprite();
 
