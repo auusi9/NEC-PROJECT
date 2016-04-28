@@ -17,7 +17,7 @@ public class MenuRotation : MonoBehaviour
     private Sprite going_up;
     public Sprite going_down;
     Animator goingUp;
-
+    public GameObject GridWithElements;
     void Start()
     {
         Time.timeScale = 1.0f;
@@ -63,12 +63,14 @@ public class MenuRotation : MonoBehaviour
           {
               goingUp.SetBool("Animated", true);
               goingUp.gameObject.GetComponent<Image>().sprite = going_down;
+            
           }
           else
           {
               goingUp.SetBool("Animated", false);
               goingUp.gameObject.GetComponent<Image>().sprite = going_up;
-          }
+            GridWithElements.GetComponent<RectTransform>().anchoredPosition = new Vector3(-5, -5);
+        }
     }
 
     void Update()

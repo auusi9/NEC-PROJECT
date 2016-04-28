@@ -56,11 +56,11 @@ public class StartMenu : MonoBehaviour {
             case 3: World.text = "III"; break;
             case 4: World.text = "IV"; break;
             case 5: World.text = "V"; break;
-            case 6: World.text = "vI"; break;
-            case 7: World.text = "vII"; break;
-            case 8: World.text = "vIII"; break;
-            case 9: World.text = "Ix"; break;
-            case 10: World.text = "x"; break;
+            case 6: World.text = "VI"; break;
+            case 7: World.text = "VII"; break;
+            case 8: World.text = "VIII"; break;
+            case 9: World.text = "IX"; break;
+            case 10: World.text = "X"; break;
         }
 
         switch (level)

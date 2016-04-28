@@ -314,7 +314,7 @@ public class LevelManager : MonoBehaviour {
             case 9:
                 if (PlayerPrefs.GetInt("NECSCENE43") == 1)
                 {
-                    SceneManager.LoadScene("NECSCENE41");
+                    SceneManager.LoadScene("NECSCENE43");
                 }
                 break;
             case 10:

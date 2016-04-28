@@ -10,6 +10,13 @@ public class SpriteManager : MonoBehaviour {
     public Sprite Forth;
     public Sprite Five;
     public Sprite Six;
+    public Sprite Seven;
+    public Sprite Eight;
+    public Sprite Nine;
+    public Sprite Ten;
+    public Sprite Eleven;
+    public Sprite Twelve;
+    public Sprite Thirteen;
     public static Sprite CurrentSprite;
     public static SpriteManager instance;
 
@@ -39,6 +46,27 @@ public class SpriteManager : MonoBehaviour {
             case 4: CurrentSprite = Five;
                 break;
             case 5: CurrentSprite = Six;
+                break;
+            case 6:
+                CurrentSprite = Seven;
+                break;
+            case 7:
+                CurrentSprite = Eight;
+                break;
+            case 8:
+                CurrentSprite = Nine;
+                break;
+            case 9:
+                CurrentSprite = Ten;
+                break;
+            case 10:
+                CurrentSprite = Eleven;
+                break;
+            case 11:
+                CurrentSprite = Twelve;
+                break;
+            case 12:
+                CurrentSprite = Thirteen;
                 break;
         }
     }
@@ -70,6 +98,28 @@ public class SpriteManager : MonoBehaviour {
                 break;
             case 5: CurrentSprite = Six;
                 break;
+            case 6:
+                CurrentSprite = Seven;
+                break;
+            case 7:
+                CurrentSprite = Eight;
+                break;
+            case 8:
+                CurrentSprite = Nine;
+                break;
+            case 9:
+                CurrentSprite = Ten;
+                break;
+            case 10:
+                CurrentSprite = Eleven;
+                break;
+            case 11:
+                CurrentSprite = Twelve;
+                break;
+            case 12:
+                CurrentSprite = Thirteen;
+                break;
+
         }
         PlayerPrefs.SetInt("SpriteSelected", spriteind);
     }

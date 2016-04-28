@@ -7,12 +7,21 @@ public class ButtonSkin : MonoBehaviour {
     public Sprite MH;
     public Sprite football;
     public Sprite pixel;
+    public Sprite Eightball;
+    public Sprite Bowling;
+    public Sprite Eye;
+    public Sprite Tennis;
+    public Sprite Mouth;
+    public Sprite Blue;
+    public Sprite Orange;
+    public Sprite Pink;
+    public Sprite Skull;
     int id;
-    Sprite currentsprite;
+    Sprite currentsprite = null;
     public GameObject[] SkinButtons;
     void Start()
     {
-        for( id = 0; id< 4; id++)
+        for( id = 1; id < 13; id++)
         {
             if (PlayerPrefs.GetInt("Skin" + id) == 1)
             {
@@ -54,9 +63,39 @@ public class ButtonSkin : MonoBehaviour {
                     currentsprite = pixel;
                     break;
                 case 4:
+                    currentsprite = Eightball;
                     price = 5;
                     break;
                 case 5:
+                    currentsprite = Bowling;
+                    price = 5;
+                    break;
+                case 6:
+                    currentsprite = Eye;
+                    price = 5;
+                    break;
+                case 7:
+                    currentsprite = Tennis;
+                    price = 5;
+                    break;
+                case 8:
+                    currentsprite = Mouth;
+                    price = 5;
+                    break;
+                case 9:
+                    currentsprite = Blue;
+                    price = 1;
+                    break;
+                case 10:
+                    currentsprite = Orange;
+                    price = 1;
+                    break;
+                case 11:
+                    currentsprite = Pink;
+                    price = 1;
+                    break;
+                case 12:
+                    currentsprite = Skull;
                     price = 5;
                     break;
             }
@@ -79,19 +118,53 @@ public class ButtonSkin : MonoBehaviour {
     {
         switch (id)
         {
-            case 0: currentsprite = SkinButtons[id].GetComponent<Image>().sprite;  break;
-            case 1: 
+           
+            case 1:
+         
                 currentsprite = MH;
                 break;
-            case 2: 
+            case 2:
+ 
                 currentsprite = football;
                 break;
-            case 3: 
+            case 3:
+       
                 currentsprite = pixel;
                 break;
             case 4:
+                currentsprite = Eightball;
+        
                 break;
             case 5:
+                currentsprite = Bowling;
+         
+                break;
+            case 6:
+                currentsprite = Eye;
+            
+                break;
+            case 7:
+                currentsprite = Tennis;
+    
+                break;
+            case 8:
+                currentsprite = Mouth;
+    
+                break;
+            case 9:
+                currentsprite = Blue;
+     
+                break;
+            case 10:
+                currentsprite = Orange;
+        
+                break;
+            case 11:
+                currentsprite = Pink;
+       
+                break;
+            case 12:
+                currentsprite = Skull;
                 break;
         }
     }
