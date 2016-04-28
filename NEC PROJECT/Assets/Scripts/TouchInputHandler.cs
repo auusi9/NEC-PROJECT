@@ -138,9 +138,9 @@ public class TouchInputHandler : MonoBehaviour
             if (Input.GetKey(KeyCode.Escape))
             {
 
-                if (SceneManager.GetActiveScene().buildIndex > 0 && SceneManager.GetActiveScene().buildIndex < 6 && SceneManager.GetActiveScene().buildIndex >= 6)
+                if (SceneManager.GetActiveScene().buildIndex == 0)
                 {
-                    SceneManager.LoadScene(0);
+                    Application.Quit();
                 }
             }
         }

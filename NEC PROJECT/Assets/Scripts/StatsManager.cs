@@ -25,9 +25,9 @@ public class StatsManager : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate ()
     {
-        totallevels.text = "" + TotalLevels;
-        totalattempts.text = "" +TotalAttempts;
-        totalrebounds.text = "" + TotalRebounds;
+        totallevels.text = "" + PlayerPrefs.GetInt("TotalLevels");
+        totalattempts.text = "" + PlayerPrefs.GetInt("TotalAttempts");
+        totalrebounds.text = "" + PlayerPrefs.GetInt("TotalRebounds");
         totalscore.text = "" + PlayerPrefs.GetInt("TotalScore");
 
         seconds = Mathf.RoundToInt(TotalTime) % 60;

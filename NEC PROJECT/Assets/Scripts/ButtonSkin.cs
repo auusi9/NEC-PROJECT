@@ -21,7 +21,8 @@ public class ButtonSkin : MonoBehaviour {
     public GameObject[] SkinButtons;
     void Start()
     {
-        for( id = 1; id < 13; id++)
+        PlayerPrefs.SetInt("Skin" + 0, 1);
+        for ( id = 1; id < 13; id++)
         {
             if (PlayerPrefs.GetInt("Skin" + id) == 1)
             {
@@ -118,7 +119,7 @@ public class ButtonSkin : MonoBehaviour {
     {
         switch (id)
         {
-           
+            case 0: break;
             case 1:
          
                 currentsprite = MH;

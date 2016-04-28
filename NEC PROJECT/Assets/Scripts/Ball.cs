@@ -66,9 +66,19 @@ public class Ball : MonoBehaviour {
                 anim.SetBool("Shield", false);        
                 Instantiate(ShieldBreak,transform.position, transform.rotation);
                 invencibility = Time.time;
-               
             }
             GetComponent<SpriteRenderer>().sprite = null;
+        }
+        else if (col.gameObject.tag == "Out")
+        {
+            FXManager.instance.PlayDie();
+            Invisible = false;
+            speed = 0;
+            shield = false;
+            anim.SetBool("Shield", false);
+            Instantiate(ShieldBreak, transform.position, transform.rotation);
+            invencibility = Time.time;
+            DieAnimation();
         }
         else if (col.gameObject.tag == "Player") return;
         else
@@ -152,7 +162,6 @@ public class Ball : MonoBehaviour {
 
             Animator parent = col.transform.parent.gameObject.GetComponent<Animator>();
             parent.SetBool("Die", true);
-            FXManager.instance.PlayPowerRed();
             Destroy(col.gameObject);
         }
 
@@ -173,7 +182,8 @@ public class Ball : MonoBehaviour {
         else if (col.gameObject.tag == "Fragment")
         {
             portal.SendMessage("FragmentDestroyed", col.gameObject);
-            for(int i  = 0; i< col.gameObject.transform.childCount; i++)
+            FXManager.instance.PlayPowerGreen();
+            for (int i  = 0; i< col.gameObject.transform.childCount; i++)
             { 
                 Destroy(col.gameObject.transform.GetChild(i).gameObject);
             }
@@ -306,6 +316,7 @@ public class Ball : MonoBehaviour {
         actual_time = clone.actual_time;
         speed = clone.speed;
         velocity = clone.velocity;
+        Invisible = clone.Invisible;
         shield = clone.shield;
         velocityDown = clone.velocityDown;
         bigBall = clone.bigBall;
