@@ -26,19 +26,17 @@ public class Portal : MonoBehaviour {
             if (PlayerPrefs.GetInt(CurrentScene + "Fragment" + i) == 1)
             {
                 fragments[i].SetActive(false);
-            }
-            
+            } 
         }
-
     }
+
     void Start()
     {
-     
-
         if (PlayerPrefs.HasKey(CurrentScene + "touches") == false)
             PlayerPrefs.SetInt(CurrentScene + "touches", 1000000);
 
         PlayerPrefs.SetInt(CurrentScene + "attempts", PlayerPrefs.GetInt(CurrentScene + "attempts")+1);
+        StatsManager.TotalAttempts++;
         PlayerPrefs.SetInt("TotalAttempts", StatsManager.TotalAttempts);
     }
 
@@ -135,6 +133,7 @@ public class Portal : MonoBehaviour {
         {
             LevelScore = 0;
         }
+
         Score.text = "" + LevelScore;
         Debug.Log(PlayerPrefs.GetInt(CurrentScene + "Score"));
         if (LevelScore > PlayerPrefs.GetInt(CurrentScene + "Score"))
