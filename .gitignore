@@ -1,22 +1,31 @@
-# Ignore the contributor's local assets folder, subfolders, and files
- NEC PROJECT/Assets/~Local/*
- NEC PROJECT/Assets/~Local/**/*
- NEC PROJECT/Assets/~Local.meta
- 
- # Ignore Library files
- NEC PROJECT/Library/*
- NEC PROJECT/Library/**/*
- 
- # Ignore local build files
- NEC PROJECT/obj/*
- NEC PROJECT/obj/**/*
- NEC PROJECT/Temp/*
- NEC PROJECT/Temp/**/*
- 
- # Ignore local project files
- NEC PROJECT/*.csproj
- NEC PROJECT/*.pidb
- NEC PROJECT/*.sln
- NEC PROJECT/*.suo
- NEC PROJECT/*.unityproj
- NEC PROJECT/*.userprefs
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Library/
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
